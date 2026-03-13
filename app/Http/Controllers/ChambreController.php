@@ -22,7 +22,6 @@ class ChambreController extends Controller
 public function store(ChambreValidation $request)
 {
     $data = $request->validated();
-
     Chambre::create($data);
 
     return redirect()->route('chambres.index');
