@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\inscriptionValidation;
-use App\Http\Requests\LoginValidation;
-use App\Models\inscription;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class InscriptionController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,26 +20,21 @@ class InscriptionController extends Controller
      */
     public function create()
     {
-        return view('inscription');
+        
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(inscriptionValidation $request)
+    public function store(Request $request)
     {
-        // dd($request);
-         $data = $request->validated();
-        // $data['role'] = "Admin";
-        $ja = User::create($data);
-        
-         return redirect()->route('Login.create');
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(inscription $inscription)
+    public function show(User $user)
     {
         //
     }
@@ -50,7 +42,7 @@ class InscriptionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(inscription $inscription)
+    public function edit(User $user)
     {
         //
     }
@@ -58,7 +50,7 @@ class InscriptionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, inscription $inscription)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -66,11 +58,8 @@ class InscriptionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(inscription $inscription)
+    public function destroy(User $user)
     {
         //
     }
 }
-
-
-    

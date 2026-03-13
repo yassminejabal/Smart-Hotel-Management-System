@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChambreValidation;
 use App\Models\Chambre;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ChambreController extends Controller
@@ -12,7 +14,9 @@ class ChambreController extends Controller
      */
     public function index()
     {
-        //
+        $data = Chambre::all();
+        // return view('dachbordReceptionniste',compact('data'));
+        return redirect()->route('/Receptionniste',compact($data));
     }
 
     /**
@@ -25,9 +29,21 @@ class ChambreController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ChambreValidation $request)
     {
-        //
+       
+      
+        
+        $newuser = new Chambre();
+        // dd($newuser->type);
+        $newuser->prix_base = $request->prix_base;
+        $newuser->statut = $request->statut;
+        $newuser->number_Chambre = $request->number_Chambre;
+        $newuser->type = $request->type;
+        $check = $newuser->save();
+        if ($check) {
+            return view('dachbordReceptionniste');
+        }
     }
 
     /**
@@ -62,3 +78,17 @@ class ChambreController extends Controller
         //
     }
 }
+
+
+
+//    public function store(Request $request)
+//     {   
+//         $produit = new produit();
+//         $produit->name = $request->name;
+//         $produit->prix = $request->prix;
+//         $produit->image_url = $request->image_url;
+//         $produit->description = $request->description;
+//         $produit->stock = $request->stock;
+//         $produit->categorie_id = $request->categorie_id;
+//         $produit->save();
+//         return redirect()->route('Produits.index');

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class inscription extends Model
 {
+
     /** @use HasFactory<\Database\Factories\InscriptionFactory> */
     use HasFactory;
 }

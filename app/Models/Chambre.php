@@ -9,4 +9,12 @@ class Chambre extends Model
 {
     /** @use HasFactory<\Database\Factories\ChambreFactory> */
     use HasFactory;
+                protected $fillable = [
+        'type',
+        'prix_base',
+        'statut',
+        'number_Chambre',
+    ];  
+
+
 }

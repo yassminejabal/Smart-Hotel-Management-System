@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginValidation;
 use App\Models\login;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -26,9 +28,27 @@ class LoginController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(LoginValidation $request)
     {
-        //
+        $data = $request->validated();
+        $check = Auth::attempt($data);
+        if ($check) {
+            
+            if (Auth::user()->role === 'Client') {
+                // return view('');
+                return dump('Client');
+            }
+            if (Auth::user()->role === 'Admin') {
+                return dump('Admin');
+                // return view('');
+            }
+            if (Auth::user()->role === 'Receptionniste') {
+                return view('dachbordReceptionniste');
+                return dump('Receptionniste');
+            }
+        } else {
+            return redirect()->route('Login.create');
+        }
     }
 
     /**
