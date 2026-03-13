@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inscriptions', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('chambres',function(Blueprint $table){
+            $table->integer('number_Chambre')->unique();
         });
     }
 
@@ -22,6 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inscriptions');
+        //
     }
 };

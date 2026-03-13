@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>HOTELO | Inscription</title>
-                <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
 </head>
 <body>
@@ -14,10 +14,11 @@
             <h1 class="logo-hotel">HOTELO</h1>
             <p class="sub-logo">Gestion Palace</p>
 
-            <form action="" method="POST">
+            <form action="{{route('inscription.store')}}" method="POST">
+                @csrf
                 <div class="form-group">
                     <label>Nom Complet</label>
-                    <input type="text" name="nom" placeholder="Ex: Yassmine Jabal" required>
+                    <input type="text" name="name" placeholder="Ex: Yassmine Jabal" required>
                 </div>
 
                 <div class="form-group">
@@ -27,7 +28,7 @@
 
                 <div class="form-group">
                     <label>Mot de passe</label>
-                    <input type="password" name="mot_de_passe" placeholder="••••••••" required>
+                    <input type="password" name="password" placeholder="••••••••" required>
                 </div>
 
                 <div class="form-group">
@@ -43,7 +44,7 @@
             </form>
 
             <div class="footer-link">
-                <a href="login.html">Déjà inscrit ? Se connecter</a>
+                <a href="{{route('Login.create')}}">Déjà inscrit ? Se connecter</a>
             </div>
 
         </div>

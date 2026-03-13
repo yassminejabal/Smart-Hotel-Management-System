@@ -231,3 +231,156 @@ body, html {
 }
 
 .footer-link a { color: var(--primary-dark); text-decoration: none; }
+
+
+
+
+
+
+/* dachboord reseptionnecte */
+/* --- Dashboard Luxury Style --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    --hotel-primary: #0a1118;    /* نفس الأسود ديال الـ Login */
+    --hotel-gold: #b89146;       /* نفس الذهبي */
+    --hotel-white: #ffffff;
+    --hotel-bg-overlay: rgba(10, 17, 24, 0.9);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+/* الخلفية الموحدة (نفس صورة الـ Login) */
+.dash-wrapper {
+    min-height: 100vh;
+    background: linear-gradient(var(--hotel-bg-overlay), var(--hotel-bg-overlay)), 
+                url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop') center/cover fixed no-repeat;
+    display: flex;
+}
+
+/* Sidebar - شفاف وأنيق */
+.dash-sidebar {
+    width: 260px;
+    background: rgba(10, 17, 24, 0.8);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(184, 145, 70, 0.3);
+    color: white;
+    padding: 40px 20px;
+    height: 100vh;
+    position: fixed;
+}
+
+.dash-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--hotel-gold);
+    letter-spacing: 5px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.dash-nav-link {
+    display: block;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 2px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.dash-nav-link:hover, .dash-nav-link.active {
+    background: rgba(184, 145, 70, 0.2);
+    color: var(--hotel-gold);
+    border-right: 4px solid var(--hotel-gold);
+}
+
+/* Main Content Area */
+.dash-container {
+    margin-left: 260px;
+    flex: 1;
+    padding: 50px;
+}
+
+/* البطاقات (نفس ستايل الـ Login Card) */
+.dash-card {
+    background: var(--hotel-white);
+    padding: 40px;
+    border-top: 5px solid var(--hotel-gold);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    margin-bottom: 40px;
+}
+
+.dash-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--hotel-primary);
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Inputs & Buttons */
+.dash-input {
+    width: 100%;
+    padding: 12px;
+    background: #f8f9fa;
+    border: 1px solid #eee;
+    margin-top: 8px;
+}
+
+.dash-btn {
+    background: var(--hotel-primary);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dash-btn:hover { background: var(--hotel-gold); }
+
+
+
+/* lougout */
+
+
+
+.logout-btn {
+    background: linear-gradient(90deg, #1a1a1a, #2a2a2a);
+    color: #ff6b6b;
+    border: none;
+    padding: 15px 15px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logout-btn::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 6px;
+    background: #d4a84f;
+}
+
+.logout-btn:hover {
+    background: linear-gradient(90deg, #222, #333);
+}
+
+.icon {
+    color: #d4a84f;
+}
