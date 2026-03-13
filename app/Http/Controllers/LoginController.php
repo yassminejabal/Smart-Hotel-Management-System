@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginValidation;
+use App\Models\Chambre;
 use App\Models\login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,30 +26,29 @@ class LoginController extends Controller
         return view('login');
     }
 
+    public function main()
+    {
+        $data = Chambre::all();
+        
+        return view('dachbordReceptionniste', compact('data'));
+    }
+
     /**
      * Store a newly created resource in storage.
      */
 public function store(LoginValidation $request)
 {
     $data = $request->validated();
-
+    
     $check = Auth::attempt($data);
-
+    
     // dd($check);
-
+    // dd($check);
+    
     if ($check) {
-
-        if (Auth::user()->role === 'Client') {
-            return dump('Client');
-        }
-
-        if (Auth::user()->role === 'Admin') {
-            return dump('Admin');
-        }
-
-        if (Auth::user()->role === 'Receptionniste') {
-            return view('dachbordReceptionniste');
-        }
+        
+        return redirect()->route('dach');
+        
 
     } else {
         return redirect()->route('Login.create');
