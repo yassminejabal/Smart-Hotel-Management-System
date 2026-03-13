@@ -113,12 +113,13 @@
     
     <td class="py-5 text-center flex justify-center items-center gap-4">
         
-        <form action="{{ route('chambers.update', $chambre->id) }}" method="POST" class="inline">
-            @method('PUT')
-            <button type="submit" class="text-blue-500 font-bold text-[11px] uppercase tracking-wider hover:text-blue-700 transition-colors">
+        {{-- <form action="{{ route('chambers.update', $chambre->id) }}" method="POST" class="inline"> --}}
+            {{-- @csrf   --}}
+            {{-- @method('PUT') --}}
+            <a href="{{route('chambers.edit',$chambre->id)}}" class="text-blue-500 font-bold text-[11px] uppercase tracking-wider hover:text-blue-700 transition-colors">
                 Modifier
-            </button>
-        </form>
+            </a>    
+        {{-- </form> --}}
 
         <span class="text-gray-200">|</span>
 

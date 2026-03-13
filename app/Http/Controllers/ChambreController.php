@@ -25,7 +25,7 @@ class ChambreController extends Controller
     }
 
 
-    
+
     public function create()
     {
         return redirect()->route('chambers.index');
