@@ -3,83 +3,41 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginValidation;
+use App\Models\Chambre;
 use App\Models\login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('login');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(LoginValidation $request)
+    public function main()
     {
-        $data = $request->validated();
-        $check = Auth::attempt($data);
-        if ($check) {
-            
-            if (Auth::user()->role === 'Client') {
-                // return view('');
-                return dump('Client');
-            }
-            if (Auth::user()->role === 'Admin') {
-                return dump('Admin');
-                // return view('');
-            }
-            if (Auth::user()->role === 'Receptionniste') {
-                return view('dachbordReceptionniste');
-                return dump('Receptionniste');
-            }
-        } else {
-            return redirect()->route('Login.create');
-        }
+        $data = Chambre::all();
+        
+        return view('dachbordReceptionniste', compact('data'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(login $login)
-    {
-        //
-    }
+public function store(LoginValidation $request)
+{
+    $data = $request->validated();
+    
+    
+    $check = Auth::attempt($data);
+    // dd($data);
+    
+    if ($check) {
+        
+        return redirect()->route('dach');
+        
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(login $login)
-    {
-        //
+    } else {
+        return redirect()->route('Login.create');
     }
+}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, login $login)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(login $login)
-    {
-        //
-    }
 }

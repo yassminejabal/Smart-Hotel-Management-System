@@ -1,153 +1,164 @@
-/* --- POLICES ET VARIABLES --- */
-/* login */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600;700&display=swap');
+    /* ==========================================================================
+    1. POLICES ET VARIABLES
+    ========================================================================== */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap');
 
-:root {
-    --primary: #0a1118;    /* Noir Profond */
-    --accent: #b89146;     /* Or Signature */
-    --accent-dark: #8e6d30;
-    --white: #ffffff;
-    --bg-overlay: rgba(10, 17, 24, 0.85); /* Overlay sombre */
-}
+    :root {
+        --hotel-primary: #0a1118;
+        --hotel-gold: #b89146;
+        --hotel-white: #ffffff;
+        --hotel-bg-overlay: rgba(10, 17, 24, 0.9);
+        --hotel-gray: #f8f9fa;
+    }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
-/* --- LE BODY (FIXE ET LUXUEUX) --- */
-body, html {
-    height: 100%;
-    width: 100%;
-    overflow: hidden; /* Empêche le scroll inutile sur le login */
-}
+    /* ==========================================================================
+    2. DASHBOARD STRUCTURE
+    ========================================================================== */
+    .dash-wrapper {
+        min-height: 100vh;
+        background: linear-gradient(var(--hotel-bg-overlay), var(--hotel-bg-overlay)), 
+                    url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop') center/cover fixed no-repeat;
+        display: flex;
+    }
 
-.login-wrapper {
-    width: 100%;
-    height: 100%;
-    /* Image d'un lobby d'hôtel floutée pour le luxe */
-    background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), 
-                url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    .dash-sidebar {
+        width: 260px;
+        background: rgba(10, 17, 24, 0.85);
+        backdrop-filter: blur(10px);
+        border-right: 1px solid rgba(184, 145, 70, 0.3);
+        color: white;
+        padding: 40px 20px;
+        height: 100vh;
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+    }
 
-/* --- LA CARTE (NADI UI) --- */
-.login-card {
-    background: var(--white);
-    width: 100%;
-    max-width: 440px;
-    padding: 60px 50px;
-    border-radius: 2px; /* Coins tranchants = Professionnel */
-    box-shadow: 0 40px 100px rgba(0,0,0,0.6);
-    position: relative;
-    border-top: 6px solid var(--accent);
-    text-align: center;
-}
+    .dash-container {
+        margin-left: 260px;
+        flex: 1;
+        padding: 40px;
+    }
 
-/* --- TYPOGRAPHIE --- */
-.logo-hotel {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    color: var(--primary);
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    margin-bottom: 5px;
-}
+    .dash-card {
+        background: var(--hotel-white);
+        padding: 30px;
+        border-top: 5px solid var(--hotel-gold);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        margin-bottom: 30px;
+        border-radius: 2px;
+    }
 
-.sub-logo {
-    font-size: 0.75rem;
-    letter-spacing: 4px;
-    color: var(--accent);
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 40px;
-}
+    /* ==========================================================================
+    3. FORMULAIRE D'AJOUT (المسؤول عن ترتيب الحقول)
+    ========================================================================== */
+    .add-chambre-form {
+        display: grid; 
+        grid-template-columns: repeat(4, 1fr); /* 4 أعمدة متساوية */
+        gap: 20px;
+        align-items: flex-end; /* ليكون الزر موازياً للحقول */
+    }
 
-/* --- FORMULAIRE --- */
-.form-group {
-    margin-bottom: 25px;
-    text-align: left;
-}
+    /* تنسيق الحقل الواحد */
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
 
-.form-group label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: #999;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 10px;
-    display: block;
-}
+    .input-group label {
+        font-size: 0.7rem; 
+        font-weight: 700; 
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
 
-.form-group input {
-    width: 100%;
-    padding: 14px 18px;
-    background: #f8f9fa;
-    border: 1px solid #eee;
-    font-size: 0.95rem;
-    border-radius: 0;
-    transition: all 0.4s ease;
-}
+    .dash-input {
+        width: 100%;
+        padding: 12px 15px;
+        background: var(--hotel-gray);
+        border: 1px solid #eee;
+        font-size: 0.9rem;
+        outline: none;
+        transition: 0.3s;
+    }
 
-.form-group input:focus {
-    outline: none;
-    background: #fff;
-    border-color: var(--accent);
-    box-shadow: 0 10px 20px rgba(184, 145, 70, 0.1);
-}
+    .dash-input:focus {
+        border-color: var(--hotel-gold);
+        background: #fff;
+    }
 
-/* --- BOUTON --- */
-.btn-submit {
-    width: 100%;
-    padding: 18px;
-    background: var(--primary);
-    color: var(--white);
-    border: none;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    cursor: pointer;
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    margin-top: 15px;
-}
+    .dash-btn {
+        background: var(--hotel-primary);
+        color: white;
+        padding: 14px;
+        border: none;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 0.75rem;
+    }
 
-.btn-submit:hover {
-    background: var(--accent);
-    letter-spacing: 5px;
-    transform: translateY(-3px);
-}
+    .dash-btn:hover {
+        background: var(--hotel-gold);
+        color: var(--hotel-primary);
+    }
 
-/* --- LIENS --- */
-.footer-links {
-    margin-top: 40px;
-    padding-top: 25px;
-    border-top: 1px solid #f0f0f0;
-}
+    /* ==========================================================================
+    4. TABLEAU & SCROLL
+    ========================================================================== */
+    .table-container {
+        max-height: 400px;
+        overflow-y: auto;
+        margin-top: 10px;
+    }
 
-.footer-links a {
-    text-decoration: none;
-    font-size: 0.75rem;
-    color: var(--primary);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+    /* Scrollbar Gold */
+    .table-container::-webkit-scrollbar { width: 5px; }
+    .table-container::-webkit-scrollbar-thumb { background: var(--hotel-gold); }
 
-.footer-links a:hover {
-    color: var(--accent);
-}
+    .hotel-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
+    .hotel-table thead th {
+        position: sticky;
+        top: 0;
+        background: #fff;
+        padding: 15px 10px;
+        font-size: 0.7rem;
+        color: #999;
+        border-bottom: 2px solid var(--hotel-gold);
+        z-index: 5;
+        text-align: left;
+        letter-spacing: 1px;
+    }
 
+    .hotel-table tbody td {
+        padding: 15px 10px;
+        border-bottom: 1px solid #eee;
+        font-size: 0.85rem;
+        color: #333;
+    }
 
-/* inscreption */
+    .status-badge {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+    }
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap');
+    .status-badge.disponible { background: rgba(46, 204, 113, 0.1); color: #2ecc71; }
+    .status-badge.occupee { background: rgba(231, 76, 60, 0.1); color: #e74c3c; }
 
+<<<<<<< HEAD
 :root {
     --primary-dark: #0a1118;
     --gold: #b89146;
@@ -345,3 +356,8 @@ body, html {
 }
 
 .dash-btn:hover { background: var(--hotel-gold); }
+=======
+    /* Actions */
+    .action-link.edit { color: #3c59e7; text-decoration: none; font-weight: bold; margin-right: 15px; font-size: 0.8rem; }
+    .action-btn.delete { color: #e74c3c; border: none; background: none; cursor: pointer; font-weight: bold; font-size: 0.8rem; }
+>>>>>>> 66ce27e3fe6a127c4456f249d3abaad5c7487f1c

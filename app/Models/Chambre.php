@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Chambre extends Model
 {
-    /** @use HasFactory<\Database\Factories\ChambreFactory> */
+    /** @use HasFactory<\Database\Factories\ChambreFacto
+     * ry> */
     use HasFactory;
                 protected $fillable = [
         'type',

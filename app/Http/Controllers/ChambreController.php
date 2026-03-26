@@ -9,86 +9,52 @@ use Illuminate\Http\Request;
 
 class ChambreController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $data = Chambre::all();
-        // return view('dachbordReceptionniste',compact('data'));
-        return redirect()->route('/Receptionniste',compact($data));
+
+        return view('dachbordReceptionniste', compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
+    public function store(ChambreValidation $request)
+    {
+        $data = $request->validated();
+        Chambre::create($data);
+
+        return redirect()->route('chambres.index');
+    }
+
+
+
     public function create()
     {
+        return redirect()->route('chambers.index');
     }
+    public function edit($id)
+    {
+        $chambre = Chambre::findOrFail($id);
+        return view('editChambre', compact('chambre'));
+    }
+
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ChambreValidation $request)
+    
+    public function update(Request $request, $id)
     {
-       
-      
-        
-        $newuser = new Chambre();
-        // dd($newuser->type);
-        $newuser->prix_base = $request->prix_base;
-        $newuser->statut = $request->statut;
-        $newuser->number_Chambre = $request->number_Chambre;
-        $newuser->type = $request->type;
-        $check = $newuser->save();
-        if ($check) {
-            return view('dachbordReceptionniste');
-        }
+        $chambre = Chambre::findOrFail($id);
+        $chambre->update($request->all());
+        return redirect()->route('chambers.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Chambre $chambre)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Chambre $chambre)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Chambre $chambre)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Chambre $chambre)
-    {
-        //
+        $chambre = Chambre::findOrFail($id);
+        $chambre->delete();
+        return redirect()->route('chambers.index');
     }
 }
-
-
-
-//    public function store(Request $request)
-//     {   
-//         $produit = new produit();
-//         $produit->name = $request->name;
-//         $produit->prix = $request->prix;
-//         $produit->image_url = $request->image_url;
-//         $produit->description = $request->description;
-//         $produit->stock = $request->stock;
-//         $produit->categorie_id = $request->categorie_id;
-//         $produit->save();
-//         return redirect()->route('Produits.index');

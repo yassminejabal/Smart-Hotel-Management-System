@@ -7,6 +7,7 @@ use App\Http\Requests\LoginValidation;
 use App\Models\inscription;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InscriptionController extends Controller
 {
@@ -26,9 +27,8 @@ class InscriptionController extends Controller
         return view('inscription');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
+
     public function store(inscriptionValidation $request)
     {
         // dd($request);
@@ -39,37 +39,18 @@ class InscriptionController extends Controller
          return redirect()->route('Login.create');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(inscription $inscription)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(inscription $inscription)
-    {
-        //
-    }
+    public function logout(Request $request)
+{
+    Auth::logout(); 
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, inscription $inscription)
-    {
-        //
-    }
+    $request->session()->invalidate(); 
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(inscription $inscription)
-    {
-        //
-    }
+    $request->session()->regenerateToken();
+
+            return redirect()->route('Login.create');
+
+}
 }
 
 
