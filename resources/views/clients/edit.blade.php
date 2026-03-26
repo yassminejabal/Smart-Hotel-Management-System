@@ -25,6 +25,7 @@
     <div class="bg-white w-full max-w-2xl p-12 shadow-[0_50px_100px_rgba(0,0,0,0.6)] border-t-[6px] border-[#b89146] relative animate-fade-in">
         
         <header class="text-center mb-10">
+            
             <h1 class="font-playfair text-3xl tracking-[4px] text-[#0a1118] uppercase">Modifier le Profil</h1>
             <p class="text-[#b89146] text-[10px] font-bold tracking-[3px] uppercase mt-2">Mise à jour des informations - Client #{{ $client->id }}</p>
         </header>
