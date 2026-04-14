@@ -1,143 +1,111 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
+@extends('layouts.app')
+@section('content')
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOTELO | Gestion Palace</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap');
-        
-        .font-playfair { font-family: 'Playfair Display', serif; }
-        .font-inter { font-family: 'Inter', sans-serif; }
+    <div class="w-full p-12">
+        <header class="flex justify-between items-end mb-12">
+            <div>
+                <p class="text-[#b89146] text-[10px] font-bold uppercase tracking-[6px] mb-3 italic">Inventory Management</p>
+                <h1 class="font-playfair text-white text-6xl leading-tight">Chambres</h1>
+            </div>
+        </header>
 
-        /* الخلفية الموحدة للمشروع */
-        .bg-dashboard {
-            background-image: linear-gradient(rgba(10, 17, 24, 0.9), rgba(10, 17, 24, 0.9)), 
-                              url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        /* تخصيص السكرول بار الذهبي */
-        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #b89146; border-radius: 10px; }
-    </style>
-</head>
-<body class="bg-dashboard font-inter min-h-screen flex">
-
-    <aside class="w-64 bg-[#0a1118]/80 backdrop-blur-md border-r border-[#b89146]/30 h-screen fixed flex flex-col p-10">
-        <div class="font-playfair text-3xl text-[#b89146] tracking-[5px] text-center mb-12 uppercase">Hotelo</div>
-        
-        <nav class="flex-1 space-y-4">
-            <a href="{{route('chambers.index')}}" class="block text-gray-400 hover:text-[#b89146] text-xs font-bold uppercase tracking-widest transition-all">📊 Tableau de Bord</a>
-            <a href="{{route('reservations.index')}}" class="block text-gray-400 hover:text-[#b89146] text-xs font-bold uppercase tracking-widest transition-all">📅 Réservations</a>
-        </nav>
-
-        <form action="{{ route('logout') }}" method="POST" class="mt-auto">
-            @csrf
-            <button type="submit" class="w-full flex items-center gap-3 text-red-400 text-[10px] font-bold uppercase tracking-[2px] border border-red-400/20 p-4 hover:bg-red-400/10 transition-all">
-                <span>▮</span> DÉCONNEXION
-            </button>
-        </form>
-    </aside>
-
-    <main class="ml-64 flex-1 p-12">
-        <h1 class="font-playfair text-white text-5xl text-right mb-12 opacity-90">Gestion des Chambres</h1>
-
-        <section class="bg-white p-8 border-t-4 border-[#b89146] shadow-2xl mb-10">
-            <h2 class="text-[#b89146] text-[10px] font-bold tracking-[3px] uppercase mb-8 text-right">Ajouter une Chambre</h2>
+        <section class="bg-white/5 border border-white/10 p-8 backdrop-blur-md mb-12 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-[2px] bg-[#b89146]/50"></div>
             
-            <form action="{{route('Chambre.store')}}" method="POST" class="grid grid-cols-4 gap-6 items-end">
+            <h2 class="text-[#b89146] text-[10px] font-bold tracking-[3px] uppercase mb-8 italic text-left">Nouvelle Unité</h2>
+            
+            <form action="{{route('Chambre.store')}}" method="POST" class="space-y-8">
                 @csrf
-                <div class="space-y-2">
-                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">N° Chambre</label>
-                    <input name="number_Chambre" type="number" placeholder="101" required
-                        class="w-full p-3 bg-gray-50 border border-gray-100 focus:outline-none focus:border-[#b89146] text-sm">
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="space-y-3">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">N° Chambre</label>
+                        <input name="number_Chambre" type="number" placeholder="101" required
+                            class="w-full p-4 bg-white/5 border border-white/10 focus:outline-none focus:border-[#b89146] text-sm text-white placeholder:text-gray-600 transition-all">
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Type</label>
+                        <select name="type" class="w-full p-4 bg-white/5 border border-white/10 focus:outline-none focus:border-[#b89146] text-sm cursor-pointer text-white transition-all">
+                            <option value="Simple" class="bg-[#0a1118]">Simple</option>
+                            <option value="Double" class="bg-[#0a1118]">Double</option>
+                            <option value="Suite" class="bg-[#0a1118]">Suite</option>
+                        </select>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Statut</label>
+                        <select name="statut" class="w-full p-4 bg-white/5 border border-white/10 focus:outline-none focus:border-[#b89146] text-sm cursor-pointer text-white transition-all">
+                            <option value="Disponible" class="bg-[#0a1118]">Disponible</option>
+                            <option value="Occupee" class="bg-[#0a1118]">Occupee</option>
+                        </select>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Prix (DH)</label>
+                        <input name="prix_base" type="number" placeholder="800" required
+                            class="w-full p-4 bg-white/5 border border-white/10 focus:outline-none focus:border-[#b89146] text-sm text-white placeholder:text-gray-600 transition-all">
+                    </div>
                 </div>
-                <div class="space-y-2">
-                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Type</label>
-                    <select name="type" class="w-full p-3 bg-gray-50 border border-gray-100 focus:outline-none focus:border-[#b89146] text-sm cursor-pointer">
-                        <option value="Simple">Simple</option>
-                        <option value="Double">Double</option>
-                        <option value="Suite">Suite</option>
-                    </select>
-                </div>
-                <div class="space-y-2">
-                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Statut</label>
-                    <select name="statut" class="w-full p-3 bg-gray-50 border border-gray-100 focus:outline-none focus:border-[#b89146] text-sm cursor-pointer">
-                        <option value="Disponible">Disponible</option>
-                        <option value="Occupee">Occupee</option>
-                    </select>
-                </div>
-                <div class="space-y-2">
-                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Prix (DH)</label>
-                    <input name="prix_base" type="number" placeholder="800" required
-                        class="w-full p-3 bg-gray-50 border border-gray-100 focus:outline-none focus:border-[#b89146] text-sm">
-                </div>
-                <div class="col-span-4 text-right mt-4">
-                    <button type="submit" class="bg-[#0a1118] text-white px-8 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-[#b89146] hover:text-[#0a1118] transition-all">
-                        Enregistrer
+                
+                <div class="flex justify-end pt-4 border-t border-white/5">
+                    <button type="submit" class="bg-[#b89146] text-[#0a1118] px-12 py-4 text-[11px] font-bold uppercase tracking-[2px] hover:bg-white hover:-translate-y-1 transition-all duration-500 shadow-[0_10px_30px_rgba(184,145,70,0.2)]">
+                        Enregistrer la Chambre
                     </button>
                 </div>
             </form>
         </section>
 
-        <section class="bg-white p-8 border-t-4 border-[#b89146] shadow-2xl">
-            <h2 class="text-[#b89146] text-[10px] font-bold tracking-[3px] uppercase mb-8 text-right">Liste des Chambres</h2>
+        <div class="bg-white shadow-[0_50px_100px_rgba(0,0,0,0.4)] overflow-hidden relative">
+            <div class="absolute top-0 left-0 w-full h-[6px] bg-[#b89146]"></div>
             
-            <div class="table-container max-h-[400px] overflow-y-auto custom-scrollbar">
-                <table class="w-full text-left border-collapse">
-                    <thead class="sticky top-0 bg-white z-10">
-                        <tr class="text-gray-400 text-[10px] tracking-widest border-bottom-2 border-[#b89146]">
-                            <th class="py-4">NUMÉRO</th>
-                            <th class="py-4">TYPE</th>
-                            <th class="py-4">PRIX</th>
-                            <th class="py-4">STATUT</th>
-                            <th class="py-4 text-center">ACTIONS</th>
+            <div class="max-h-[500px] overflow-y-auto custom-scrollbar">
+                <table class="w-full text-left border-collapse min-w-[1000px]">
+                    <thead class="sticky top-0 bg-white z-10 shadow-sm">
+                        <tr class="text-gray-400 text-[9px] tracking-[3px] uppercase border-b border-gray-100">
+                            <th class="p-8">NUMÉRO</th>
+                            <th class="p-8">TYPE</th>
+                            <th class="p-8">PRIX</th>
+                            <th class="p-8">STATUT</th>
+                            <th class="p-8 text-right">ACTIONS</th>
                         </tr>
                     </thead>
-                    <tbody class="text-sm">
-                 @foreach($data as $chambre)
-<tr class="border-b border-gray-50 hover:bg-gray-50 transition-colors">
-    <td class="py-5 font-bold">#{{ $chambre->number_Chambre }}</td>
-    <td class="py-5 text-gray-600">{{ $chambre->type }}</td>
-    <td class="py-5 text-gray-600 font-semibold">{{ $chambre->prix_base }} DH</td>
-    <td class="py-5">
-        <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase {{ $chambre->statut == 'Disponible' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600' }}">
-            {{ $chambre->statut }}
-        </span>
-    </td>
-    
-    <td class="py-5 text-center flex justify-center items-center gap-4">
-        
-        {{-- <form action="{{ route('chambers.update', $chambre->id) }}" method="POST" class="inline"> --}}
-            {{-- @csrf   --}}
-            {{-- @method('PUT') --}}
-            <a href="{{route('chambers.edit',$chambre->id)}}" class="text-blue-500 font-bold text-[11px] uppercase tracking-wider hover:text-blue-700 transition-colors">
-                Modifier
-            </a>    
-        {{-- </form> --}}
-
-        <span class="text-gray-200">|</span>
-
-        <form action="{{ route('chambers.destroy', $chambre->id) }}" method="POST" class="inline" onsubmit=" return confirm('supprimer cette chambre ?')">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="text-red-500 font-bold text-[11px] uppercase tracking-wider hover:text-red-700 transition-colors">
-                Supprimer
-            </button>
-        </form>
-        
-    </td>
-</tr>
-@endforeach
+                    <tbody class="divide-y divide-gray-50 text-gray-900">
+                        @foreach($data as $chambre)
+                        <tr class="hover:bg-gray-50/50 transition duration-300">
+                            <td class="p-8 font-bold text-[#0a1118]">#{{ $chambre->number_Chambre }}</td>
+                            <td class="p-8">
+                                <span class="text-[10px] font-black tracking-widest uppercase">{{ $chambre->type }}</span>
+                            </td>
+                            <td class="p-8 font-black text-sm">
+                                {{ number_format($chambre->prix_base, 2) }} <span class="text-[10px] text-[#b89146]">DH</span>
+                            </td>
+                            <td class="p-8">
+                                <span class="px-3 py-1 rounded-full text-[9px] font-bold uppercase {{ $chambre->statut == 'Disponible' ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600' }}">
+                                    {{ $chambre->statut }}
+                                </span>
+                            </td>
+                            <td class="p-8 text-right">
+                                <div class="flex justify-end gap-3">
+                                    <a href="{{route('chambers.edit',$chambre->id)}}" class="p-2 bg-gray-50 text-gray-400 hover:text-[#b89146] hover:bg-[#0a1118] transition-all rounded-full" title="Modifier">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2.5 2.5 0 113.536 3.536L12 14.207l-5 1 1-5 7.232-7.232z" stroke-width="2"/></svg>
+                                    </a>
+                                    
+                                    <form action="{{ route('chambers.destroy', $chambre->id) }}" method="POST" class="inline" onsubmit="return confirm('Supprimer هذه الغرفة؟')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="p-2 bg-gray-50 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-all rounded-full" title="Supprimer">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
-        </section>
-    </main>
+        </div>
+    </div>
 
-</body>
-</html>
+@endsection

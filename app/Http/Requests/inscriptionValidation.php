@@ -26,7 +26,7 @@ class inscriptionValidation extends FormRequest
             'name'=>['required'],
             'email' => ['required', 'email','max:150'],
             'password' => ['required','min:8'],
-            'role' => ['required', Rule::in(['Client', 'Receptionniste','Admin'])],
+            'role' => ['required', Rule::in(['Client','Receptionniste'])],
         ];
     }
 }

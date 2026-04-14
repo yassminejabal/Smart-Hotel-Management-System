@@ -19,18 +19,15 @@ class ClientRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules()
+    public function rules(): array
 {
-    // On récupère l'ID du client directement depuis l'URL de la route
-    $clientId = $this->route('client'); 
-
     return [
-        'nom' => 'required|string|max:255',
-        'prenom' => 'required|string|max:255',
-        'email' => 'required|email|unique:clients,email,' . $clientId,
-        'telephone' => 'nullable|string|unique:clients,telephone,' . $clientId,
-        'adresse' => 'nullable|string|max:255',
-        'date_naissance' => 'nullable|date'
+        'nom'            => 'required|string|max:255',
+        'prenom'         => 'required|string|max:255',
+        'email'          => 'required|email|unique:clients,email|max:255',
+        'telephone'      => 'nullable|string|max:20',
+        'adresse'        => 'nullable|string|max:500',
+        'date_naissance' => 'nullable|date|before:today',
     ];
 }
 }

@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
-//     public function users()
-// {
-//     return $this->hasMany(User::class);
-// }
- protected $fillable = [
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'client_id');
+    }
+
+    protected $fillable = [
         'nom',
         'prenom',
         'email',

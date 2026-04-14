@@ -11,17 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class InscriptionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('inscription');
@@ -31,10 +20,8 @@ class InscriptionController extends Controller
 
     public function store(inscriptionValidation $request)
     {
-        // dd($request);
          $data = $request->validated();
-        // $data['role'] = "Admin";
-        $ja = User::create($data);
+         User::create($data);
         
          return redirect()->route('Login.create');
     }

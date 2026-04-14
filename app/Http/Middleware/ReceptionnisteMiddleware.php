@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class ClientMiddleware
+class ReceptionnisteMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,10 @@ class ClientMiddleware
     {
         if (!Auth::check()) {
             return redirect()->route('Login.create');
-        }
-
-        if (Auth::user()->role == 'Client' || Auth::user()->role == 'Admin' || Auth::user()->role =='Receptionniste') {
-            return $next($request);
             }
-            abort(404);
+            if (Auth::user()->role == 'Receptionniste') {
+                return $next($request);
+        }
+        abort(404);
     }
 }

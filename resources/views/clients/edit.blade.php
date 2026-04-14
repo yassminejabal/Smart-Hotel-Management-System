@@ -75,9 +75,7 @@
             </div>
 
             <div class="flex items-center justify-between pt-8 border-t border-gray-100 mt-8">
-                {{-- <a href="{{ route('clients.index') }}" class="text-[10px] font-bold text-gray-400 uppercase tracking-widest hover:text-[#0a1118] transition-colors">
-                     و الرجوع
-                </a> --}}
+               
                 
                 <button type="submit" 
                     class="py-5 px-12 bg-[#0a1118] text-white text-[11px] font-bold uppercase tracking-[3px] hover:bg-[#b89146] hover:text-[#0a1118] hover:tracking-[5px] transition-all duration-500 shadow-xl">

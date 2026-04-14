@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Luxury Hotel Theme */
+/* ... كملي الكود ديالك العادي هنا ... */
+/* Luxury Hotel Theme */
+.font-playfair { font-family: 'Playfair Display', serif; }
+.font-inter { font-family: 'Inter', sans-serif; }
+
+body { 
+    font-family: 'Inter', sans-serif; 
+}
+
+.bg-dashboard {
+    background-image: linear-gradient(rgba(10, 17, 24, 0.92), rgba(10, 17, 24, 0.92)),
+                      url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    overflow-x: hidden;
+}
+
+.custom-scrollbar::-webkit-scrollbar { 
+    width: 5px; 
+}
+.custom-scrollbar::-webkit-scrollbar-thumb { 
+    background: #b89146; 
+    border-radius: 10px; 
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade { 
+    animation: fadeInUp 0.8s ease-out forwards; 
+}
+
+.sidebar {
+    @apply w-72 border-r border-[#b89146]/20 p-10 flex flex-col fixed h-full bg-black/40 backdrop-blur-2xl z-50;
+}
+.sidebar-nav {
+    @apply flex-1 space-y-4 text-[10px] font-bold tracking-[4px] uppercase;
+}
+.sidebar-link {
+    @apply block text-gray-400 hover:text-[#b89146] text-xs font-bold uppercase tracking-widest transition-all;
+}
+.active-link {
+    @apply flex items-center gap-3 text-[#b89146] border-b border-[#b89146]/20 pb-2 italic;
+}

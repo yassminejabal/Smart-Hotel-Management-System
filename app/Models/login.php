@@ -11,7 +11,6 @@ class login extends Model
     protected $fillable = [
         'email',
         'password',
-        // 'role',
     ];
     /** @use HasFactory<\Database\Factories\LoginFactory> */
     use HasFactory;
