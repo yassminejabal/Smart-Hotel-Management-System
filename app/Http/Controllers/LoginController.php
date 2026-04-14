@@ -25,6 +25,7 @@ class LoginController extends Controller
             return redirect()->route('client.dashboard');
         }
         $data = Chambre::all();
+        
         return view('dachbordReceptionniste', compact('data'));
     }
 

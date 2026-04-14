@@ -15,6 +15,7 @@ class ReservationController extends Controller
     public function index()
     {
         $reservations = Reservation::with(['client', 'chambre'])->get();
+
         return view('reservation.index', compact('reservations'));
     }
 
@@ -24,6 +25,7 @@ class ReservationController extends Controller
     {
         $clients = Client::all();
         $Chambres = Chambre::where('statut', 'Disponible')->get();
+        
         return view('reservation.create', compact('clients', 'Chambres'));
     }
 
