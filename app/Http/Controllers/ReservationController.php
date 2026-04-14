@@ -18,6 +18,8 @@ class ReservationController extends Controller
         return view('reservation.index', compact('reservations'));
     }
 
+    
+
     public function create()
     {
         $clients = Client::all();
