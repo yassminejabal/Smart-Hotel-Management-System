@@ -29,10 +29,10 @@
         <header class="text-center mb-12">
             <h1 class="font-playfair text-5xl tracking-[8px] text-white uppercase">Hotelo</h1>
             <p class="text-[#b89146] text-[10px] font-bold tracking-[5px] uppercase mt-3 italic">Gestion Palace</p>
-            <div class="w-12 h-[1px] bg-[#b89146]/30 mx-auto mt-6"></div>
+            <div class="w-12 h-[1px] bg-[#b89146]/3login.stor0 mx-auto mt-6"></div>
         </header>
 
-        <form action="{{ route('login.store') }}" method="POST" class="space-y-8" autocomplete="off">
+        <form action="{{ route('Login.store') }}" method="POST" class="space-y-8" autocomplete="off">
             @csrf
             
             <div class="space-y-3">

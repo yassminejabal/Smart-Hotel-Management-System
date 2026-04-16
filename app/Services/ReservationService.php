@@ -20,9 +20,10 @@ class ReservationService
                 'chambre_id'     => $data['chambre_id'],
                 'check_in'       => $data['check_in'],
                 'check_out'      => $data['check_out'],
-                'invitees'       => $data['invitees'],
+                'invitees'       => 1,
                 'total_price'    => $data['total_price'],
-                'payment_status' => 'En attente',
+                'status'         => $data['status'],
+                'payment_status' => $data['payment_status'],
             ]);
             Paiement::create([
                 'reservation_id' => $reservation->id,

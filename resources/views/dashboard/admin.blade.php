@@ -42,44 +42,65 @@
             
             <div class="p-8 border-b border-gray-100 flex justify-between items-center">
                 <h2 class="font-playfair text-2xl text-[#0a1118] tracking-wide">
-                    Liste des Clients
+                    Liste des users
                 </h2>
                 <span class="text-[9px] font-bold text-gray-400 uppercase tracking-[3px]">Hébergement Palace</span>
             </div>
 
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
-                    <thead>
+                   <thead>
                         <tr class="text-gray-400 text-[9px] tracking-[3px] uppercase border-b border-gray-50">
                             <th class="p-6">ID</th>
-                            <th class="p-6">Identité</th>
-                            <th class="p-6">Contact</th>
-                            <th class="p-6">Localisation</th>
+                            <th class="p-6">Nom complet</th>
+                            <th class="p-6">Email</th>
+                            <th class="p-6">Téléphone</th>
+                            <th class="p-6">Rôle</th>
+                            <th class="p-6">Adresse</th>
                             <th class="p-6">Naissance</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-50 text-gray-900">
-                        @foreach ($clients as $client)
-                            <tr class="hover:bg-gray-50/50 transition duration-300">
-                                <td class="p-6">
-                                    <span class="text-[#b89146] font-bold text-xs italic">#{{ $client->id }}</span>
-                                </td>
-                                <td class="p-6">
-                                    <p class="text-sm font-bold text-[#0a1118]">{{ $client->nom }} {{ $client->prenom }}</p>
-                                </td>
-                                <td class="p-6">
-                                    <p class="text-xs text-[#0a1118]">{{ $client->email }}</p>
-                                    <p class="text-[10px] text-gray-400 mt-1">{{ $client->telephone }}</p>
-                                </td>
-                                <td class="p-6">
-                                    <p class="text-xs text-gray-600 italic">{{ $client->adresse }}</p>
-                                </td>
-                                <td class="p-6">
-                                    <span class="text-[10px] font-medium text-gray-400">{{ $client->date_naissance }}</span>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
+                   <tbody class="divide-y divide-gray-50 text-gray-900">
+                @foreach ($users as $user)
+                    <tr class="hover:bg-gray-50/50 transition duration-300">
+                        
+                        <td class="p-6">
+                            <span class="text-[#b89146] font-bold text-xs italic">#{{ $user->id }}</span>
+                        </td>
+
+                        <td class="p-6">
+                            <p class="text-sm font-bold text-[#0a1118]">
+                                {{ $user->name }} {{ $user->prenom }}
+                            </p>
+                        </td>
+
+                        <td class="p-6">
+                            <p class="text-xs text-[#0a1118]">{{ $user->email }}</p>
+                        </td>
+
+                        <td class="p-6">
+                            <p class="text-[10px] text-gray-400">{{ $user->telephone }}</p>
+                        </td>
+
+                        <td class="p-6">
+                            <span class="text-xs font-semibold px-2 py-1 rounded {{ $user->role === 'Admin'}}">
+                                {{ $user->role }}
+                            </span>
+                        </td>
+
+                        <td class="p-6">
+                            <p class="text-xs text-gray-600 italic">{{ $user->adresse }}</p>
+                        </td>
+
+                        <td class="p-6">
+                            <span class="text-[10px] font-medium text-gray-400">
+                                {{ $user->date_naissance }}
+                            </span>
+                        </td>
+
+                    </tr>
+                @endforeach
+            </tbody>
                 </table>
             </div>
         </div>

@@ -19,15 +19,16 @@ class UpdateStatuspaimentService
         $this->data = $data;
         $this->id = $id;
     }
-    public function updateStatuspaimentservice()
-    {
-        $paiment = Paiement::findOrFail($this->id);
-        DB::transaction(function () use ($paiment) {
-            $reservation = $paiment->reservation;
-            $reservation->payment_status = $this->data->statut;
-            $reservation->save();
-            $paiment->statut = $this->data->statut;
-            $paiment->save();
-        });
-    }
+public function updateStatuspaimentservice()
+{
+    $reservation = Reservation::findOrFail($this->id);
+    
+    DB::transaction(function () use ($reservation) {
+        $payment_status = $this->data->payment_status; 
+        $reservation->payment_status = $payment_status;
+        $reservation->save();
+            $reservation->paiement->statut = $payment_status;
+            $reservation->paiement->save();
+            });
+}
 }

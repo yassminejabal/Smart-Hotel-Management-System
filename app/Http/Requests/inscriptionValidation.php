@@ -22,11 +22,14 @@ class inscriptionValidation extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name'=>['required'],
-            'email' => ['required', 'email','max:150'],
-            'password' => ['required','min:8'],
-            'role' => ['required', Rule::in(['Client'])],
-        ];
+       return [
+    'name'           => ['required', 'string'],
+    'email'          => ['required', 'email'],
+    'telephone'      => ['required', 'string'],
+    'adresse'        => ['required', 'string'],
+    'date_naissance' => ['required', 'date'],
+    'password'       => ['required', 'string', 'min:8'],
+    'role'           => ['required', Rule::in(['Client'])],
+];
     }
 }

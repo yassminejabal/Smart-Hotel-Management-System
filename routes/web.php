@@ -1,8 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChambreController;
-use App\Http\Controllers\InscriptionController;
-use App\Http\Controllers\LoginController;
 use App\Http\Middleware\UserMiddleware;
 use App\Models\Chambre;
 use Illuminate\Support\Facades\Route;
@@ -15,29 +14,34 @@ use App\Http\Middleware\ReceptionnisteMiddleware;
 Route::get('/', function () {
     return view("Lendinpages");
 });
-Route::get('/Login/create', [LoginController::class, 'create'])->name('Login.create');
-Route::post('/Login/store', [LoginController::class, 'store'])->name('Login.store');
-Route::get('/inscription/create', [InscriptionController::class, 'create'])->name('inscription.create');
-Route::post('/inscription/store', [InscriptionController::class, 'store'])->name('inscription.store');
-Route::post('/Login/store', [LoginController::class, 'store'])->name('login.store');
-Route::get('/inscription/create', [InscriptionController::class, 'create'])->name('inscription.create');
-Route::post('/inscription/store', [InscriptionController::class, 'store'])->name('inscription.store');
-Route::get('/dachbord', [LoginController::class, 'main'])->name('dach');
+
+
+Route::get('/Login/create', [AuthController::class, 'logincreate'])->name('Login.create');
+Route::post('/Login/store', [AuthController::class, 'Loginstore'])->name('Login.store');
+Route::get('/inscription/create', [AuthController::class, 'createinscription'])->name('inscription.create');
+Route::post('/inscription/store', [AuthController::class, 'storeinscreption'])->name('inscription.store');
+Route::get('/dachbord', [AuthController::class, 'main'])->name('dach');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+
+
+
+
 Route::get('/admin-dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard')->middleware(AdminMiddleware::class);
 Route::get('/client-dashboard', [DashboardController::class, 'client'])->name('client.dashboard')->middleware(ClientMiddleware::class);
 Route::post('/Chambre/store', [ChambreController::class, 'store'])->name('Chambre.store')->middleware(ReceptionnisteMiddleware::class);
 Route::get('/chambres', [ChambreController::class, 'index'])->name('chambres.index')->middleware(ReceptionnisteMiddleware::class);
-Route::post('/logout', [InscriptionController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [ChambreController::class, 'index'])->name('chambers.index')->middleware(ReceptionnisteMiddleware::class);
 Route::get('/chambers/{id}/edit', [ChambreController::class, 'edit'])->name('chambers.edit')->middleware(ReceptionnisteMiddleware::class);
 Route::put('/chambers/{id}', [ChambreController::class, 'update'])->name('chambers.update')->middleware(ReceptionnisteMiddleware::class);
 Route::delete('/chambers/{id}', [ChambreController::class, 'destroy'])->name('chambers.destroy')->middleware(ReceptionnisteMiddleware::class);
-Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create')->middleware(ReceptionnisteMiddleware::class);
-Route::post('/clients/store', [ClientController::class, 'store'])->name('clients.store')->middleware(ReceptionnisteMiddleware::class);
-Route::get('/clients/{id}/edit', [ClientController::class, 'edit'])->name('clients.edit')->middleware(ReceptionnisteMiddleware::class);
-Route::put('/clients/{id}', [ClientController::class, 'update'])->name('clients.update')->middleware(ReceptionnisteMiddleware::class);
-Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('clients.destroy')->middleware(ReceptionnisteMiddleware::class);
-Route::get('/clients/{id}/history', [ClientController::class, 'history'])->name('client.historique')->middleware(ReceptionnisteMiddleware::class);
+// Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create')->middleware(ReceptionnisteMiddleware::class);
+// Route::post('/clients/store', [ClientController::class, 'store'])->name('clients.store')->middleware(ReceptionnisteMiddleware::class);
+// Route::get('/clients/{id}/edit', [ClientController::class, 'edit'])->name('clients.edit')->middleware(ReceptionnisteMiddleware::class);
+// Route::put('/clients/{id}', [ClientController::class, 'update'])->name('clients.update')->middleware(ReceptionnisteMiddleware::class);
+// Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('clients.destroy')->middleware(ReceptionnisteMiddleware::class);
+// Route::get('/clients/{id}/history', [ClientController::class, 'history'])->name('client.historique')->middleware(ReceptionnisteMiddleware::class);
 Route::get('/reservations/index', [ReservationController::class, 'index'])->name('reservations.index')->middleware(ReceptionnisteMiddleware::class);
 Route::get('/reservations/create', [ReservationController::class, 'create'])->name('reservations.create')->middleware(ReceptionnisteMiddleware::class);
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store')->middleware(ReceptionnisteMiddleware::class);

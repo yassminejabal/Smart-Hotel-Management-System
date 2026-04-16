@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ClientRequest extends FormRequest
 {
@@ -22,12 +23,13 @@ class ClientRequest extends FormRequest
     public function rules(): array
 {
     return [
-        'nom'            => 'required|string|max:255',
-        'prenom'         => 'required|string|max:255',
-        'email'          => 'required|email|unique:clients,email|max:255',
-        'telephone'      => 'nullable|string|max:20',
-        'adresse'        => 'nullable|string|max:500',
-        'date_naissance' => 'nullable|date|before:today',
-    ];
+    'name' => ['required', 'string'],
+    'email' => ['required', 'email'],
+    'password' => ['required', 'min:8',],
+    'role' => ['required', Rule::in(['Client'])],
+    'telephone' => ['nullable', 'string'],
+    'adresse' => ['nullable', 'string',],
+    'date_naissance' => ['nullable', 'date'],
+];
 }
 }

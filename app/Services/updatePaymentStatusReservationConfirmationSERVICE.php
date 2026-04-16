@@ -22,7 +22,5 @@ class updatePaymentStatusReservationConfirmationSERVICE
         $reservation = Reservation::findOrFail($this->id);
         $reservation->status = $this->request->status;
         $reservation->save();
-        $paiment = $reservation->paiement;
-        $paiment->statut = $this->request->statut;
     }
 }

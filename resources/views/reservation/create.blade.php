@@ -24,47 +24,19 @@
                     <div class="md:col-span-2">
                         <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 block">Sélectionner un Client Existant</label>
                         <select name="client_id" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none cursor-pointer">
-                            <option value="" class="bg-[#0a1118]">-- Nouveau Client / Remplir ci-dessous --</option>
-                            @foreach ($clients as $client)
-                                <option value="{{ $client->id }}" class="bg-[#0a1118]">
-                                    {{ $client->nom }} {{ $client->prenom }}
+
+                            <option value="" class="bg-[#0a1118]">
+                                -- Nouveau Client / Remplir ci-dessous --
+                            </option>
+
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}" class="bg-[#0a1118]">
+                                    {{ $user->name }}
                                 </option>
                             @endforeach
+
                         </select>
                     </div>
-
-                    <div class="space-y-3">
-                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block italic">Nom</label>
-                        <input type="text" name="nom" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
-                    </div>
-
-                    <div class="space-y-3">
-                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block italic">Prénom</label>
-                        <input type="text" name="prenom" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
-                    </div>
-
-                    <div class="space-y-3">
-                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block italic">Email</label>
-                        <input type="email" name="email" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
-                    </div>
-
-                    <div class="space-y-3">
-                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block italic">Téléphone</label>
-                        <input type="text" name="telephone" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
-                    </div>
-
-                    <div class="space-y-3">
-                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block italic">Date de Naissance</label>
-                        <input type="date" name="date_naissance" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
-                    </div>
-
-                    <div class="space-y-3">
-                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block italic">Adresse</label>
-                        <input type="text" name="adresse" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
-                    </div>
-                </div>
-            </section>
-
             <section class="bg-white/5 border border-white/10 p-10 backdrop-blur-md shadow-2xl relative">
                 <div class="absolute top-0 left-0 w-full h-[2px] bg-[#b89146]/50"></div>
 
@@ -115,11 +87,13 @@
                             <select name="status" class="p-3 bg-white/5 border border-white/10 focus:border-[#b89146] text-[10px] font-bold text-white uppercase tracking-widest outline-none">
                                 <option value="en_attente" class="bg-[#0a1118]">🕒 Attente</option>
                                 <option value="confirmee" class="bg-[#0a1118]">✅ Confirmée</option>
+                                <option value="annulee" class="bg-[#0a1118]">❌ annulee</option>
                             </select>
                             
                             <select name="payment_status" class="p-3 bg-white/5 border border-white/10 focus:border-[#b89146] text-[10px] font-bold text-white uppercase tracking-widest outline-none">
-                                <option value="non_paye" class="bg-[#0a1118]">💳 Non Payé</option>
-                                <option value="paye" class="bg-[#0a1118]">💰 Payé</option>
+                                <option value="En attente" class="bg-[#0a1118]">💳 En attente</option>
+                                <option value="Payé" class="bg-[#0a1118]">💰 Payé</option>
+                                <option value="Échoué" class="bg-[#0a1118]">❌ Échoué</option>
                             </select>
                         </div>
                     </div>

@@ -16,13 +16,14 @@ class Reservation extends Model
         'payment_status',
         'status',
     ];
-    public function paiement() {
-    return $this->hasOne(Paiement::class);
-}
+    public function paiement()
+    {
+        return $this->hasOne(Paiement::class);
+    }
 
     public function client()
     {
-        return $this->belongsTo(Client::class, 'client_id');
+        return $this->belongsTo(User::class, 'client_id');
     }
 
     public function chambre()

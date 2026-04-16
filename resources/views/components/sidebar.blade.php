@@ -32,9 +32,6 @@
             <a href="{{ route('chambres.index') }}" class="block text-gray-400 hover:text-[#b89146] text-xs font-bold uppercase tracking-widest transition-all">
                 🔑 Chambres
             </a>
-            <a href="{{ route('clients.create') }}" class="block text-gray-400 hover:text-[#b89146] text-xs font-bold uppercase tracking-widest transition-all">
-                 create Client
-            </a>
         @endif
     </nav>
 

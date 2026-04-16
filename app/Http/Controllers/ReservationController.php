@@ -10,6 +10,7 @@ use App\Models\Chambre;
 use App\Models\Facture;
 use App\Models\Paiement;
 use App\Models\Reservation;
+use App\Models\User;
 use App\Services\ReservationService;
 use App\Services\updatePaymentStatusReservationConfirmationSERVICE;
 use App\Services\UpdateReservationService;
@@ -28,9 +29,9 @@ class ReservationController extends Controller
 
     public function create()
     {
-        $clients = Client::all();
+        $users = User::where('role', 'Client')->get();
         $Chambres = Chambre::where('statut', 'Disponible')->get();
-        return view('reservation.create', compact('clients', 'Chambres'));
+        return view('reservation.create', compact('users', 'Chambres'));
     }
 
 
@@ -56,20 +57,19 @@ class ReservationController extends Controller
     public function edit($id)
     {
         $reservation = Reservation::findOrFail($id);
-        $clients = Client::all();
+        $users = User::all();
 
         $Chambres = Chambre::where('statut', 'Disponible')
             ->orWhere('id', $reservation->chambre_id)
             ->get();
 
-        return view('reservation.edit', compact('reservation', 'clients', 'Chambres'));
+        return view('reservation.edit', compact('reservation', 'users', 'Chambres'));
     }
 
 
     public function update(ReservationUpdateRequest $request, $id)
     {
         try {
-        // dd($id);
         $UpdateReservationService = new UpdateReservationService($request->validated(), $id);
         $UpdateReservationService->updateReservationservicee();
         return redirect()->route("reservations.index");
@@ -81,6 +81,8 @@ class ReservationController extends Controller
 
     public function updatePaymentStatusReservationConfirmation(Request $request, $id)
     {
+
+        // dd($request,$id);
         $updatepayementconfirmeeservice = new updatePaymentStatusReservationConfirmationSERVICE($request, $id);
         $updatepayementconfirmeeservice->PayementAndcofirmereservationService();
         return back();
@@ -88,6 +90,7 @@ class ReservationController extends Controller
 
     public function updateStatuspaiment(Request $request, $id)
     {
+
 
         try {
             $UpdateStatuspaimentService = new UpdateStatuspaimentService($request, $id);
