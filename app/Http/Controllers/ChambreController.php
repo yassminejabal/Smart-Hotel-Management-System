@@ -14,20 +14,14 @@ class ChambreController extends Controller
     {
         $data = Chambre::all();
 
-        return view('dachbordReceptionniste', compact('data'));
+        return view('chambres.dachbordchambres', compact('data'));
     }
-
-
     public function store(ChambreValidation $request)
     {
         $data = $request->validated();
         Chambre::create($data);
-
         return redirect()->route('chambres.index');
     }
-
-
-
     public function create()
     {
         return redirect()->route('chambers.index');
@@ -35,14 +29,14 @@ class ChambreController extends Controller
     public function edit($id)
     {
         $chambre = Chambre::findOrFail($id);
-        return view('editChambre', compact('chambre'));
+        return view('chambres.editChambre', compact('chambre'));
     }
 
 
     /**
      * Store a newly created resource in storage.
      */
-    
+
     public function update(Request $request, $id)
     {
         $chambre = Chambre::findOrFail($id);

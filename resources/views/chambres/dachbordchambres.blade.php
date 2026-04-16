@@ -78,7 +78,7 @@
                                 <span class="text-[10px] font-black tracking-widest uppercase">{{ $chambre->type }}</span>
                             </td>
                             <td class="p-8 font-black text-sm">
-                                {{ number_format($chambre->prix_base, 2) }} <span class="text-[10px] text-[#b89146]">DH</span>
+                                {{ $chambre->prix_base}} <span class="text-[10px] text-[#b89146]">DH</span>
                             </td>
                             <td class="p-8">
                                 <span class="px-3 py-1 rounded-full text-[9px] font-bold uppercase {{ $chambre->statut == 'Disponible' ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600' }}">
@@ -91,7 +91,7 @@
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2.5 2.5 0 113.536 3.536L12 14.207l-5 1 1-5 7.232-7.232z" stroke-width="2"/></svg>
                                     </a>
                                     
-                                    <form action="{{ route('chambers.destroy', $chambre->id) }}" method="POST" class="inline" onsubmit="return confirm('Supprimer هذه الغرفة؟')">
+                                    <form action="{{ route('chambers.destroy', $chambre->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="p-2 bg-gray-50 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-all rounded-full" title="Supprimer">

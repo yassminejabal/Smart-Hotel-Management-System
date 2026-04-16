@@ -26,8 +26,8 @@
                         <select name="client_id" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none cursor-pointer">
                             <option value="" class="bg-[#0a1118]">-- Nouveau Client / Remplir ci-dessous --</option>
                             @foreach ($clients as $client)
-                                <option value="{{ $client->id }}" class="bg-[#0a1118]" {{ old('client_id') == $client->id ? 'selected' : '' }}>
-                                    {{ strtoupper($client->nom) }} {{ $client->prenom }}
+                                <option value="{{ $client->id }}" class="bg-[#0a1118]">
+                                    {{ $client->nom }} {{ $client->prenom }}
                                 </option>
                             @endforeach
                         </select>
@@ -35,32 +35,32 @@
 
                     <div class="space-y-3">
                         <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block italic">Nom</label>
-                        <input type="text" name="nom" value="{{ old('nom') }}" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
+                        <input type="text" name="nom" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
                     </div>
 
                     <div class="space-y-3">
                         <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block italic">Prénom</label>
-                        <input type="text" name="prenom" value="{{ old('prenom') }}" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
+                        <input type="text" name="prenom" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
                     </div>
 
                     <div class="space-y-3">
                         <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block italic">Email</label>
-                        <input type="email" name="email" value="{{ old('email') }}" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
+                        <input type="email" name="email" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
                     </div>
 
                     <div class="space-y-3">
                         <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block italic">Téléphone</label>
-                        <input type="text" name="telephone" value="{{ old('telephone') }}" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
+                        <input type="text" name="telephone" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
                     </div>
 
                     <div class="space-y-3">
                         <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block italic">Date de Naissance</label>
-                        <input type="date" name="date_naissance" value="{{ old('date_naissance') }}" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
+                        <input type="date" name="date_naissance" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
                     </div>
 
                     <div class="space-y-3">
                         <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block italic">Adresse</label>
-                        <input type="text" name="adresse" value="{{ old('adresse') }}" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
+                        <input type="text" name="adresse" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
                     </div>
                 </div>
             </section>
@@ -76,17 +76,17 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="space-y-3">
                         <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block italic">Check-In</label>
-                        <input type="date" name="check_in" value="{{ old('check_in') }}" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
+                        <input type="date" name="check_in" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
                     </div>
                     
                     <div class="space-y-3">
                         <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block italic">Check-Out</label>
-                        <input type="date" name="check_out" value="{{ old('check_out') }}" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
+                        <input type="date" name="check_out" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
                     </div>
 
                     <div class="space-y-3">
                         <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block italic">Nombre d'invités</label>
-                        <input type="number" name="invitees" min="1" value="{{ old('invitees', 1) }}" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
+                        <input type="number" name="invitees" min="1" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none">
                     </div>
 
                     <div class="space-y-3">
@@ -94,8 +94,8 @@
                         <select name="chambre_id" class="w-full p-4 bg-white/5 border border-white/10 focus:border-[#b89146] text-sm text-white outline-none cursor-pointer">
                             <option value="" disabled selected class="bg-[#0a1118]">-- Choisir --</option>
                             @foreach ($Chambres as $chambre)
-                                <option value="{{ $chambre->id }}" class="bg-[#0a1118]" {{ old('chambre_id') == $chambre->id ? 'selected' : '' }}>
-                                    N°{{ $chambre->number_Chambre }} ({{ $chambre->type ?? 'Suite' }})
+                                <option value="{{ $chambre->id }}" class="bg-[#0a1118]">
+                                    N°{{ $chambre->number_Chambre }} ({{ $chambre->type }})
                                 </option>
                             @endforeach
                         </select>
@@ -104,7 +104,7 @@
                     <div class="space-y-3">
                         <label class="text-[10px] font-bold text-[#b89146] uppercase tracking-widest block italic">Prix Total</label>
                         <div class="relative">
-                            <input type="number" step="0.01" name="total_price" value="{{ old('total_price') }}" class="w-full p-4 bg-[#b89146]/10 border border-[#b89146]/30 text-[#b89146] font-bold text-lg outline-none">
+                            <input type="number" step="0.01" name="total_price" class="w-full p-4 bg-[#b89146]/10 border border-[#b89146]/30 text-[#b89146] font-bold text-lg outline-none">
                             <span class="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-bold text-[#b89146]">MAD</span>
                         </div>
                     </div>
@@ -113,13 +113,13 @@
                         <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block italic">Statut & Paiement</label>
                         <div class="flex flex-col gap-2">
                             <select name="status" class="p-3 bg-white/5 border border-white/10 focus:border-[#b89146] text-[10px] font-bold text-white uppercase tracking-widest outline-none">
-                                <option value="en_attente" class="bg-[#0a1118]" {{ old('status') == 'en_attente' ? 'selected' : '' }}>🕒 Attente</option>
-                                <option value="confirmee" class="bg-[#0a1118]" {{ old('status') == 'confirmee' ? 'selected' : '' }}>✅ Confirmée</option>
+                                <option value="en_attente" class="bg-[#0a1118]">🕒 Attente</option>
+                                <option value="confirmee" class="bg-[#0a1118]">✅ Confirmée</option>
                             </select>
                             
                             <select name="payment_status" class="p-3 bg-white/5 border border-white/10 focus:border-[#b89146] text-[10px] font-bold text-white uppercase tracking-widest outline-none">
-                                <option value="non_paye" class="bg-[#0a1118]" {{ old('payment_status') == 'non_paye' ? 'selected' : '' }}>💳 Non Payé</option>
-                                <option value="paye" class="bg-[#0a1118]" {{ old('payment_status') == 'paye' ? 'selected' : '' }}>💰 Payé</option>
+                                <option value="non_paye" class="bg-[#0a1118]">💳 Non Payé</option>
+                                <option value="paye" class="bg-[#0a1118]">💰 Payé</option>
                             </select>
                         </div>
                     </div>

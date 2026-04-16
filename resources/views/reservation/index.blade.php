@@ -9,7 +9,7 @@
                 <h1 class="font-playfair text-white text-6xl leading-tight">Dashboard</h1>
             </div>
             <a href="{{ route('reservations.create') }}" class="bg-[#b89146] text-[#0a1118] px-10 py-5 text-[11px] font-bold uppercase tracking-[4px] hover:bg-white hover:-translate-y-1 transition-all duration-500 shadow-[0_20px_50px_rgba(184,145,70,0.3)]">
-                + Nouvelle Réservation
+                + Nouvelle Réservation 
             </a>
         </header>
 
@@ -50,15 +50,13 @@
                             <td class="p-8">
                                 <div class="flex items-center gap-4">
                                     <div class="h-10 w-10 rounded-full bg-[#0a1118] flex items-center justify-center text-[#b89146] font-bold text-xs border border-[#b89146]/30 uppercase">
-                                        {{ substr($reservation->client->prenom, 0, 1) }}{{ substr($reservation->client->nom, 0, 1) }}
                                     </div>
                                     <div>
-                                        <p class="font-bold text-[#0a1118] text-sm uppercase tracking-tight">{{ $reservation->client->prenom }} {{ $reservation->client->nom }}</p>
+                                        <p class="font-bold text-[#0a1118] text-sm uppercase tracking-tight"> {{ $reservation->client->nom }}</p>
                                         <p class="text-[10px] text-gray-400 font-semibold uppercase">{{ $reservation->client->telephone }}</p>
                                     </div>
                                 </div>
                             </td>
-
                             <td class="p-8">
                                 <div class="flex items-center gap-4">
                                     <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=100" class="w-16 h-10 object-cover rounded" alt="Suite">
@@ -77,26 +75,28 @@
                             </td>
 
                             <td class="p-8">
-                                <p class="font-black text-[#0a1118] text-sm">{{ number_format($reservation->total_price, 2) }} <span class="text-[10px] text-[#b89146]">DH</span></p>
+                                <p class="font-black text-[#0a1118] text-sm">{{ $reservation->total_price }} <span class="text-[10px] text-[#b89146]">DH</span></p>
                             </td>
 
                         <td class="p-8">
-                            <form action="{{ route('reservations.updateStatus', $reservation->id) }}" method="POST">
+
+
+
+                            <form action="{{ route('reservations.updateStatuspaiment', $reservation->id) }}" method="POST">
                                 @csrf
                                 @method('PATCH')
                                 <select name="statut" onchange="this.form.submit()" 
                         class="appearance-none w-full py-2 px-4 text-[9px] font-bold uppercase tracking-widest rounded-full text-center cursor-pointer transition-all border-2
                         {{ $reservation->paiement?->statut == 'Payé' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200' }}">
                         
-                        <option value="En attente" {{ ($reservation->paiement?->statut ?? 'En attente') == 'En attente' ? 'selected' : '' }}>💳 En attente</option>
-                        <option value="Payé" {{ $reservation->paiement?->statut == 'Payé' ? 'selected' : '' }}>💰 Payé</option>
-                        <option value="Échoué" {{ $reservation->paiement?->statut == 'Échoué' ? 'selected' : '' }}>❌ Échoué</option>
-                    </select>
+                        <option value="En attente">💳 En attente</option>
+                        <option value="Payé">💰 Payé</option>
+                        <option value="Échoué">❌ Échoué</option>
+                        </select>
                             </form>
                         </td>
-
                         <td class="p-8">
-                            <form action="{{ route('reservations.updatePaymentStatus', $reservation->id) }}" method="POST">
+                            <form action="{{ route('reservations.updatePaymentStatusReservationConfirmation', $reservation) }}" method="POST">
                                 @csrf
                                 @method('PATCH')
                                 <select name="status" onchange="this.form.submit()" 
@@ -105,9 +105,9 @@
                                     {{ $reservation->status == 'annulee' ? 'bg-red-50 text-red-700 border-red-200' : '' }}
                                     {{ $reservation->status == 'en_attente' ? 'bg-orange-50 text-orange-700 border-orange-200' : '' }}">
                                     
-                                    <option value="en_attente" {{ $reservation->status == 'en_attente' ? 'selected' : '' }}>🕒 En attente</option>
-                                    <option value="confirmee" {{ $reservation->status == 'confirmee' ? 'selected' : '' }}>✅ Confirmée</option>
-                                    <option value="annulee" {{ $reservation->status == 'annulee' ? 'selected' : '' }}>❌ Annulée</option>
+                                    <option value="en_attente" {{ $reservation->status == 'en_attente'}}>🕒 En attente</option>
+                                    <option value="confirmee" {{ $reservation->status == 'confirmee' }}>✅ Confirmée</option>
+                                    <option value="annulee" {{ $reservation->status == 'annulee' }}>❌ Annulée</option>
                                 </select>
                             </form>
                         </td>

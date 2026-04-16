@@ -25,16 +25,16 @@ class LoginController extends Controller
             return redirect()->route('client.dashboard');
         }
         $data = Chambre::all();
-        
+
         return view('dachbordReceptionniste', compact('data'));
     }
 
     public function store(LoginValidation $request)
     {
-        
+
         $data = $request->validated();
         $check = Auth::attempt($data);
-        
+
         if ($check) {
             return redirect()->route('dach');
         } else {

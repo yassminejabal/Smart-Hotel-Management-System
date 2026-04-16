@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class inscriptionValidation extends FormRequest
+class ReservationUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +22,14 @@ class inscriptionValidation extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>['required'],
-            'email' => ['required', 'email','max:150'],
-            'password' => ['required','min:8'],
-            'role' => ['required', Rule::in(['Client'])],
+            'client_id'      => 'required|exists:clients,id',
+            'chambre_id'     => 'required|exists:chambres,id',
+            'check_in'       => 'required|date',
+            'check_out'      => 'required|date',
+            'invitees'       => 'required|integer',
+            'total_price'    => 'required|numeric',
+            'payment_status' => 'required|string',
+            'status'         => 'required|string',
         ];
     }
 }

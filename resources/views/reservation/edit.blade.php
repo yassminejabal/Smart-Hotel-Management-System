@@ -53,7 +53,7 @@
                             <option value="">-- Nouveau Client / Modifier les infos ci-dessous --</option>
                             @foreach ($clients as $client)
                                 <option value="{{ $client->id }}" {{ (old('client_id', $reservation->client_id) == $client->id) ? 'selected' : '' }}>
-                                    {{ strtoupper($client->nom) }} {{ $client->prenom }}
+                                    {{ $client->nom }} {{ $client->prenom }}
                                 </option>
                             @endforeach
                         </select>
@@ -154,10 +154,17 @@
                                 <option value="annulee">❌ Annulée</option>
                             </select>
                             
-                            <select name="payment_status" class="p-3 border border-gray-200 focus:border-[#0a1118] bg-white outline-none text-[10px] font-bold uppercase tracking-widest transition-all">
-                                <option value="non_paye"  == 'non_paye'>💳 Non Payé</option>
-                                <option value="paye" == 'paye'>💰 Payé</option>
-                            </select>
+                       <select name="payment_status" class="p-3 border border-gray-200">
+                            <option value="En attente" {{ old('payment_status', $reservation->payment_status) == 'En attente' ? 'selected' : '' }}>
+                                💳 En attente
+                            </option>
+                            <option value="Payé" {{ old('payment_status', $reservation->payment_status) == 'Payé' ? 'selected' : '' }}>
+                                💰 Payé
+                            </option>
+                            <option value="Échoué" {{ old('payment_status', $reservation->payment_status) == 'Échoué' ? 'selected' : '' }}>
+                                ❌ Échoué
+                            </option>
+                        </select>
                         </div>
                     </div>
                 </div>

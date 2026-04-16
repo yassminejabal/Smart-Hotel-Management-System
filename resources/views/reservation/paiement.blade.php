@@ -121,12 +121,8 @@
     <div class="space-y-6">
         <p class="text-[10px] text-gray-500 uppercase tracking-[5px] font-bold border-b border-white/5 pb-2">Menu Principal</p>
         
-        <a href="{{ route('reservations.index') }}" class="flex items-center gap-4 text-white text-[12px] font-bold uppercase tracking-[3px] hover:text-[#b89146] transition-all group">
+        <a href="{{ route('client.dashboard',$reservation->id) }}" class="flex items-center gap-4 text-white text-[12px] font-bold uppercase tracking-[3px] hover:text-[#b89146] transition-all group">
             <span class="w-8 h-[1px] bg-[#b89146] group-hover:w-14 transition-all"></span> Dashboard
-        </a>
-
-        <a href="{{ route('client.historique', $reservation->client_id) }}" class="flex items-center gap-4 text-white text-[12px] font-bold uppercase tracking-[3px] hover:text-[#b89146] transition-all group">
-            <span class="w-8 h-[1px] bg-[#b89146] group-hover:w-14 transition-all"></span> Historique
         </a>
     </div>
 </nav>
@@ -161,7 +157,7 @@
             </div>
             <div class="text-right">
                 <span class="text-[10px] text-[#b89146] font-black tracking-[8px] uppercase block mb-2 italic">Dossier Officiel</span>
-                <span class="font-playfair text-3xl text-[#0a1118] font-bold">#RES-{{ str_pad($reservation->id ?? '1', 4, '0', STR_PAD_LEFT) }}</span>
+                <span class="font-playfair text-3xl text-[#0a1118] font-bold">#RES-{{ $reservation->index }}</span>
             </div>
         </header>
 
@@ -173,8 +169,8 @@
                         <span class="w-3 h-[1px] bg-[#b89146]"></span> Profil Client
                     </h2>
                     <div class="bg-gray-50/80 p-8 border-l-4 border-[#b89146] transition-all duration-500 hover:bg-[#0a1118] hover:text-white group-hover:translate-x-2">
-                        <p class="text-2xl font-playfair font-black uppercase tracking-tight">{{ $reservation->client->prenom ?? 'Client' }} {{ $reservation->client->nom ?? 'HOTELO' }}</p>
-                        <p class="text-[11px] text-gray-500 mt-4 font-bold tracking-[2px] group-hover:text-gray-400 italic">📞 {{ $reservation->client->telephone ?? '+212 6XX XXX XXX' }}</p>
+                        <p class="text-2xl font-playfair font-black uppercase tracking-tight">{{ $reservation->client->prenom}} {{ $reservation->client->nom}}</p>
+                        <p class="text-[11px] text-gray-500 mt-4 font-bold tracking-[2px] group-hover:text-gray-400 italic">📞 {{ $reservation->client->telephone}}</p>
                     </div>
                 </section>
 
@@ -183,20 +179,20 @@
                     <div class="bg-gray-50/80 p-8 grid grid-cols-2 gap-8 border border-gray-100 transition-all duration-500 hover:shadow-2xl">
                         <div class="col-span-2 flex items-center gap-6 mb-2 border-b border-gray-200 pb-6">
                             <div class="w-16 h-16 bg-[#0a1118] flex items-center justify-center text-[#b89146] font-playfair font-black text-2xl shadow-[0_10px_20px_rgba(0,0,0,0.3)]">
-                                {{ $reservation->chambre->number_Chambre ?? '101' }}
+                                {{ $reservation->chambre->number_Chambre}}
                             </div>
                             <div>
                                 <p class="text-[10px] text-gray-400 uppercase tracking-widest font-black mb-1">Hébergement</p>
-                                <p class="text-md font-black text-[#0a1118] uppercase tracking-tighter italic text-lg">{{ $reservation->chambre->type ?? 'Suite Royale' }}</p>
+                                <p class="text-md font-black text-[#0a1118] uppercase tracking-tighter italic text-lg">{{ $reservation->chambre->type}}</p>
                             </div>
                         </div>
                         <div>
                             <p class="text-[10px] text-gray-400 uppercase tracking-widest font-black mb-2 italic">Arrivée</p>
-                            <p class="text-sm font-black text-[#0a1118]">{{ $reservation->check_in ?? '12 Oct 2026' }}</p>
+                            <p class="text-sm font-black text-[#0a1118]">{{ $reservation->check_in}}</p>
                         </div>
                         <div>
                             <p class="text-[10px] text-gray-400 uppercase tracking-widest font-black mb-2 italic">Départ</p>
-                            <p class="text-sm font-black text-[#0a1118]">{{ $reservation->check_out ?? '15 Oct 2026' }}</p>
+                            <p class="text-sm font-black text-[#0a1118]">{{ $reservation->check_out}}</p>
                         </div>
                     </div>
                 </section>
@@ -209,13 +205,12 @@
                     
                     <div class="shine-effect"></div>
 
-                    <p class="text-[11px] uppercase tracking-[6px] font-black mb-6 transition-transform duration-500 group-hover:-translate-y-2
-                        {{ ($reservation->payment_status == 'paye') ? 'text-green-600' : 'text-red-600' }}">
+                    <p class="text-[11px] uppercase tracking-[6px] font-black mb-6 transition-transform duration-500 group-hover:-translate-y-2">
                         Montant Total TTC
                     </p>
                     
                     <h3 class="font-playfair text-6xl font-black text-[#0a1118] mb-10 flex items-baseline gap-3 transition-transform duration-500 group-hover:scale-110">
-                        <span class="tracking-tighter">{{ number_format($reservation->total_price ?? 0, 2) }}</span> 
+                        <span class="tracking-tighter">{{ $reservation->total_price }}</span> 
                         <span class="text-2xl text-[#b89146] font-black">MAD</span>
                     </h3>
 

@@ -10,7 +10,7 @@ class ClientController extends Controller
 {
     public function create()
     {
-        return view('clients.createform');
+        return view('clients.create');
     }
     public function store(ClientRequest $request)
 {

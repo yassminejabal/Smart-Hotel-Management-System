@@ -11,7 +11,6 @@
         .font-playfair { font-family: 'Playfair Display', serif; }
         .font-inter { font-family: 'Inter', sans-serif; }
 
-        /* --- Animations Pure CSS --- */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
@@ -28,7 +27,6 @@
         .delay-1 { animation-delay: 0.3s; opacity: 0; animation-fill-mode: forwards; }
         .delay-2 { animation-delay: 0.6s; opacity: 0; animation-fill-mode: forwards; }
         
-        /* Glassmorphism utility */
         .glass-nav {
             background: rgba(10, 17, 24, 0.4);
             backdrop-filter: blur(10px);
@@ -46,22 +44,17 @@
         </div>
         
         <div class="flex items-center gap-6">
-            @auth
                 <div class="flex gap-6 items-center text-[10px] font-bold uppercase tracking-[3px]">
-                    <a href="{{ url('/admin-dashboard') }}" class="text-[#b89146] hover:text-white transition">Mon Espace</a>
                     <form method="POST" action="{{ route('logout') }}" class="inline">
                         @csrf
                         <button type="submit" class="bg-white/10 px-4 py-2 hover:bg-red-500/20 hover:text-red-500 transition-all duration-500">Déconnexion</button>
                     </form>
                 </div>
-            @endauth
 
-            @guest
                 <div class="flex gap-6 text-[10px] font-bold uppercase tracking-[3px]">
                     <a href="{{ route('Login.create') }}" class="hover:text-[#b89146] transition duration-500 py-2">Connexion</a>
                     <a href="{{ route('inscription.create') }}" class="bg-[#b89146] text-[#0a1118] px-6 py-2 hover:bg-white transition-all duration-500 shadow-lg shadow-[#b89146]/20">Inscription</a>
                 </div>
-            @endguest
         </div>
     </nav>
 
