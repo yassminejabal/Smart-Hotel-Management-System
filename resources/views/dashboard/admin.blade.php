@@ -15,7 +15,6 @@
         </header>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            
             <div class="bg-white/5 border border-white/10 p-10 backdrop-blur-md relative overflow-hidden group hover:border-[#b89146]/50 transition-all duration-500 shadow-2xl">
                 <div class="absolute top-0 left-0 w-1 h-full bg-[#b89146]"></div>
                 <h2 class="text-[#b89146] text-[10px] font-bold tracking-[4px] uppercase mb-6 italic">Total Réservations</h2>
