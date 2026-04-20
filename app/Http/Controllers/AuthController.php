@@ -61,7 +61,6 @@ class AuthController extends Controller
     public function main()
     {
         $user = Auth::user();
-
         if (!$user) {
             return redirect()->route('Login.create');
         }
@@ -70,23 +69,20 @@ class AuthController extends Controller
         } elseif ($user->role === 'Client') {
             return redirect()->route('client.dashboard');
         }
-        $data = Chambre::all();
-        return view('chambres.dachbordchambres', compact('data'));
+        return redirect()->route('reseptionneste.dashboard');
     }
     public function toogleban($id)
     {
-        // dd($id);
         $user = User::findOrFail($id);
         if ($user->is_banne == true) {
 
             $user->is_banne = false;
             $message = 'Utilisateur débanni avec succès.';
-        } else {
-
+        }
+        else {
             $user->is_banne = true;
             $message = 'Utilisateur banni avec succès.';
         }
-
         $user->save();
 
         return back()->with('success', $message);

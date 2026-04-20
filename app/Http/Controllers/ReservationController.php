@@ -22,20 +22,20 @@ class ReservationController extends Controller
 {
     public function index()
     {
-        $reservations = Reservation::with(['client', 'chambre'])->get();
-
+        $reservations = Reservation::whereHas('client', function ($query) {
+            $query->where('is_banne', false);
+        })->with(['client', 'chambre'])->get();
         return view('reservation.index', compact('reservations'));
     }
 
     public function create()
     {
-        $users = User::where('role', 'Client')->get();
+        $users = User::where('role', 'Client')
+            ->where('is_banne', false)
+            ->get();
         $Chambres = Chambre::where('statut', 'Disponible')->get();
         return view('reservation.create', compact('users', 'Chambres'));
     }
-
-
-
 
 
     public function store(ReservationRequest $request)
@@ -50,19 +50,12 @@ class ReservationController extends Controller
     }
 
 
-
-
-
-
     public function edit($id)
     {
         $reservation = Reservation::findOrFail($id);
-        $users = User::all();
-
-        $Chambres = Chambre::where('statut', 'Disponible')
-            ->orWhere('id', $reservation->chambre_id)
-            ->get();
-
+        $users = User::where('role', 'Client')
+            ->where('is_banne', false)->orWhere('id', $reservation->client_id)->get();
+        $Chambres = Chambre::where('statut', 'Disponible')->orWhere('id', $reservation->chambre_id)->get();
         return view('reservation.edit', compact('reservation', 'users', 'Chambres'));
     }
 
@@ -70,11 +63,11 @@ class ReservationController extends Controller
     public function update(ReservationUpdateRequest $request, $id)
     {
         try {
-        $UpdateReservationService = new UpdateReservationService($request->validated(), $id);
-        $UpdateReservationService->updateReservationservicee();
-        return redirect()->route("reservations.index");
+            $UpdateReservationService = new UpdateReservationService($request->validated(), $id);
+            $UpdateReservationService->updateReservationservicee();
+            return redirect()->route("reservations.index");
         } catch (Exception $th) {
-        return back()->with('error update', $th->getMessage());
+            return back()->with('error update', $th->getMessage());
         }
     }
 

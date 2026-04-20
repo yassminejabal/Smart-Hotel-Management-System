@@ -26,7 +26,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::patch('/users/{id}/toogleban',[AuthController::class, 'toogleban'])->name('users.toogleban');
 
 
-
+Route::get('/reseptionneste-dashboard',[DashboardController::class,'reseptionneste'])->name('reseptionneste.dashboard');
 
 
 Route::get('/admin-dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard')->middleware(AdminMiddleware::class);
@@ -37,12 +37,44 @@ Route::get('/dashboard', [ChambreController::class, 'index'])->name('chambers.in
 Route::get('/chambers/{id}/edit', [ChambreController::class, 'edit'])->name('chambers.edit')->middleware(ReceptionnisteMiddleware::class);
 Route::put('/chambers/{id}', [ChambreController::class, 'update'])->name('chambers.update')->middleware(ReceptionnisteMiddleware::class);   
 Route::delete('/chambers/{id}', [ChambreController::class, 'destroy'])->name('chambers.destroy')->middleware(ReceptionnisteMiddleware::class);
-// Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create')->middleware(ReceptionnisteMiddleware::class);
-// Route::post('/clients/store', [ClientController::class, 'store'])->name('clients.store')->middleware(ReceptionnisteMiddleware::class);
-// Route::get('/clients/{id}/edit', [ClientController::class, 'edit'])->name('clients.edit')->middleware(ReceptionnisteMiddleware::class);
-// Route::put('/clients/{id}', [ClientController::class, 'update'])->name('clients.update')->middleware(ReceptionnisteMiddleware::class);
-// Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('clients.destroy')->middleware(ReceptionnisteMiddleware::class);
-// Route::get('/clients/{id}/history', [ClientController::class, 'history'])->name('client.historique')->middleware(ReceptionnisteMiddleware::class);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create')->middleware(ReceptionnisteMiddleware::class);
+Route::get('/clients/index', [ClientController::class, 'index'])->name('clients.index')->middleware(ReceptionnisteMiddleware::class);
+Route::post('/clients/store', [ClientController::class, 'store'])->name('clients.store')->middleware(ReceptionnisteMiddleware::class);
+Route::get('/clients/{id}/edit', [ClientController::class, 'edit'])->name('clients.edit')->middleware(ReceptionnisteMiddleware::class);
+Route::put('/clients/{id}', [ClientController::class, 'update'])->name('clients.update')->middleware(ReceptionnisteMiddleware::class);
+Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('clients.destroy')->middleware(ReceptionnisteMiddleware::class);
+Route::get('/clients/{id}/history', [ClientController::class, 'history'])->name('client.historique')->middleware(ReceptionnisteMiddleware::class);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/reservations/index', [ReservationController::class, 'index'])->name('reservations.index')->middleware(ReceptionnisteMiddleware::class);
 Route::get('/reservations/create', [ReservationController::class, 'create'])->name('reservations.create')->middleware(ReceptionnisteMiddleware::class);
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store')->middleware(ReceptionnisteMiddleware::class);
@@ -52,8 +84,15 @@ Route::delete('/reservations/{id}', [ReservationController::class, 'destroy'])->
 Route::patch('/reservations/{id}/status', [ReservationController::class, 'updateStatuspaiment'])->name('reservations.updateStatuspaiment')->middleware(ReceptionnisteMiddleware::class);
 Route::patch('/reservations/{id}/payment-status', [ReservationController::class, 'updatePaymentStatusReservationConfirmation'])->name('reservations.updatePaymentStatusReservationConfirmation')->middleware(ReceptionnisteMiddleware::class);
 Route::get('/reservations/{id}/paiement', [ReservationController::class, 'showPaiement'])->name('reservations.paiement');
+Route::post('/facture/{id}/pdf', [FactureController::class, 'telechargerFacture'])->name('facture.pdf')->middleware(ReceptionnisteMiddleware::class);
 
 
-// use App\Http\Controllers\FactureController;
 
-Route::post('/facture/{id}/pdf', [FactureController::class, 'telechargerFacture'])->name('facture.pdf');
+
+
+
+
+
+
+Route::get('/clients/{id}/send-email', [ClientController::class, 'sendEmail'])->name('clients.sendEmail');
+

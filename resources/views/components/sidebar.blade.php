@@ -22,16 +22,19 @@
                 <p class="text-white text-xl font-playfair tracking-tight uppercase">
                 </p>
             </div>
-        @elseif($userRole === 'Receptionniste')
-            <a href="{{ route('reservations.index') }}" class="flex items-center gap-3 text-[#b89146] border-b border-[#b89146]/20 pb-2 transition-all italic">
-                📊 Tableau de Bord Receptionniste
-            </a>
-            <a href="{{ route('reservations.index') }}" class="block text-gray-400 hover:text-[#b89146] text-xs font-bold uppercase tracking-widest transition-all">
-                📅 Réservations
-            </a>
-            <a href="{{ route('chambres.index') }}" class="block text-gray-400 hover:text-[#b89146] text-xs font-bold uppercase tracking-widest transition-all">
-                🔑 Chambres
-            </a>
+        @elseif($userRole === 'Receptionniste')     
+        <a href="{{ route('reservations.index') }}" class="block text-gray-400 hover:text-[#b89146] text-xs font-bold uppercase tracking-widest transition-all">
+            📅 Réservations
+        </a>
+        <a href="{{ route('reseptionneste.dashboard') }}" class="block text-gray-400 hover:text-[#b89146] text-xs font-bold uppercase tracking-widest transition-all">
+          📅  Dashboard Receptionniste
+        </a>
+        <a href="{{ route('chambres.index') }}" class="block text-gray-400 hover:text-[#b89146] text-xs font-bold uppercase tracking-widest transition-all">
+            🔑 Chambres
+        </a>
+        <a href="{{ route('clients.index') }}" class="block text-gray-400 hover:text-[#b89146] text-xs font-bold uppercase tracking-widest transition-all">
+           📌  Les clients 
+        </a>
         @endif
     </nav>
 
