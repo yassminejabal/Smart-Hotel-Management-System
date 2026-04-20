@@ -9,6 +9,7 @@
         @endphp
         
         @if($userRole === 'Admin')
+
             <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 text-[#b89146] border-b border-[#b89146]/20 pb-2 transition-all italic">
                 📊 Dashboard Admin
             </a>
@@ -17,11 +18,14 @@
             <a href="{{ route('client.dashboard') }}" class="flex items-center gap-3 text-[#b89146] border-b border-[#b89146]/20 pb-2 transition-all italic">
                 📊 Dashboard Client
             </a>
+
+
             <div class="pt-8 border-t border-white/5">
                 <p class="text-[#b89146] mb-4 text-[9px] italic tracking-[2px]">Espace Client</p>
                 <p class="text-white text-xl font-playfair tracking-tight uppercase">
                 </p>
             </div>
+            
         @elseif($userRole === 'Receptionniste')     
         <a href="{{ route('reservations.index') }}" class="block text-gray-400 hover:text-[#b89146] text-xs font-bold uppercase tracking-widest transition-all">
             📅 Réservations
