@@ -113,7 +113,6 @@
             <option value="en_attente" {{ $reservation->status == 'en_attente' ? 'selected' : '' }}>🕒 En attente</option>
             <option value="confirmee" {{ $reservation->status == 'confirmee' ? 'selected' : '' }}>✅ Confirmée</option>
             <option value="annulee" {{ $reservation->status == 'annulee' ? 'selected' : '' }}>❌ Annulée</option>
-            
         </select>
     </form>
 </td>

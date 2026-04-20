@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FactureController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ClientMiddleware;
 use App\Http\Middleware\ReceptionnisteMiddleware;
@@ -51,3 +52,8 @@ Route::delete('/reservations/{id}', [ReservationController::class, 'destroy'])->
 Route::patch('/reservations/{id}/status', [ReservationController::class, 'updateStatuspaiment'])->name('reservations.updateStatuspaiment')->middleware(ReceptionnisteMiddleware::class);
 Route::patch('/reservations/{id}/payment-status', [ReservationController::class, 'updatePaymentStatusReservationConfirmation'])->name('reservations.updatePaymentStatusReservationConfirmation')->middleware(ReceptionnisteMiddleware::class);
 Route::get('/reservations/{id}/paiement', [ReservationController::class, 'showPaiement'])->name('reservations.paiement');
+
+
+// use App\Http\Controllers\FactureController;
+
+Route::post('/facture/{id}/pdf', [FactureController::class, 'telechargerFacture'])->name('facture.pdf');

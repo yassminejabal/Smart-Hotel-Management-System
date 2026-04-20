@@ -5,109 +5,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOTELO | Facture Premium Luxe</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;700;900&display=swap');
-        
-        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        .font-playfair { font-family: 'Playfair Display', serif; }
+   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;700;900&display=swap');
+    
+    body { font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+    .font-playfair { font-family: 'Playfair Display', serif; }
 
-        /* 1. الخلفية المتحركة الملكية */
-        .bg-luxury-palace {
-            background-image: linear-gradient(rgba(10, 17, 24, 0.96), rgba(10, 17, 24, 0.96)), 
-                                url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover; 
-            background-position: center; 
-            background-attachment: fixed;
-            animation: breatheBackground 30s infinite alternate ease-in-out;
-        }
+    /* 1. الخلفية المتحركة الملكية - Plus fluide */
+    .bg-luxury-palace {
+        background: linear-gradient(rgba(7, 11, 15, 0.92), rgba(7, 11, 15, 0.92)), 
+                    url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop');
+        background-size: cover; 
+        background-position: center; 
+        background-attachment: fixed;
+        animation: breatheBackground 40s infinite alternate linear;
+    }
 
-        @keyframes breatheBackground {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.05); }
-        }
+    @keyframes breatheBackground {
+        0% { background-position: center; transform: scale(1); }
+        100% { background-position: top center; transform: scale(1.08); }
+    }
 
-        /* 2. حركات الدخول السينمائي */
-        @keyframes cinematicFadeIn {
-            0% { opacity: 0; filter: blur(15px); transform: translateY(40px) scale(0.98); }
-            100% { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
-        }
-        .animate-card { animation: cinematicFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    /* 2. حركات الدخول السينمائي - Plus douce */
+    @keyframes cinematicFadeIn {
+        0% { opacity: 0; filter: blur(20px); transform: translateY(60px); }
+        100% { opacity: 1; filter: blur(0); transform: translateY(0); }
+    }
+    .animate-card { animation: cinematicFadeIn 1.8s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
 
-        /* 3. سحر المربع المالي (Animation 3la jahd) */
-        @keyframes border-glow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    /* 3. سحر المربع المالي - Gold Gradient Animation */
+    @keyframes border-glow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
 
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            100% { transform: translateY(-10px); }
-        }
+    .payment-card-luxe {
+        position: relative;
+        background: #fff;
+        z-index: 1;
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        border: 1px solid rgba(184, 145, 70, 0.1);
+    }
 
-        .payment-card-luxe {
-            position: relative;
-            background: #fff;
-            z-index: 1;
-            overflow: hidden;
-            transition: all 0.5s ease;
-        }
+    .payment-card-luxe:hover {
+        transform: translateY(-5px);
+        shadow: 0 40px 80px rgba(184, 145, 70, 0.15);
+    }
 
-        /* الحاشية اللي كتحرك (Animated Gradient Border) */
-        .payment-card-luxe::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            background: linear-gradient(45deg, #b89146, #ffffff, #b89146, #0a1118);
-            background-size: 400% 400%;
-            z-index: -1;
-            animation: border-glow 6s linear infinite;
-        }
+    /* Animated Gradient Border */
+    .payment-card-luxe::before {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        background: linear-gradient(90deg, #b89146, #fef3c7, #b89146, #0a1118);
+        background-size: 300% 300%;
+        z-index: -1;
+        animation: border-glow 8s ease infinite;
+    }
 
-        .payment-card-luxe::after {
-            content: '';
-            position: absolute;
-            inset: 4px;
-            background: inherit;
-            z-index: -1;
-        }
+    /* 4. Effet de brillance (Shine) amélioré */
+    .shine-effect {
+        position: absolute;
+        top: 0; left: -150%;
+        width: 100%; height: 100%;
+        background: linear-gradient(to right, transparent, rgba(184, 145, 70, 0.1), transparent);
+        transform: skewX(-30deg);
+        transition: 0.8s;
+    }
+    .payment-card-luxe:hover .shine-effect { left: 150%; }
 
-        .float-status {
-            animation: floating 2s infinite alternate ease-in-out;
-        }
+    /* 5. Button Shimmer Auto-Luxe */
+    .btn-shimmer-auto {
+        position: relative;
+        overflow: hidden;
+        background: #0a1118;
+        transition: all 0.4s ease;
+    }
+    
+    .btn-shimmer-auto::after {
+        content: "";
+        position: absolute;
+        top: -50%; left: -50%;
+        width: 200%; height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(184, 145, 70, 0.2), transparent);
+        transform: rotate(45deg);
+        animation: continuousShimmer 4s infinite linear;
+    }
 
-        /* تأثير الشعاع عند تمرير الماوس */
-        .shine-effect {
-            position: absolute;
-            top: 0; left: -100%;
-            width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.6), transparent);
-            transform: skewX(-25deg);
-            transition: 0.8s;
-        }
-        .payment-card-luxe:hover .shine-effect {
-            left: 150%;
-        }
+    @keyframes continuousShimmer {
+        0% { transform: translateX(-100%) rotate(45deg); }
+        100% { transform: translateX(100%) rotate(45deg); }
+    }
 
-        /* 4. بوطونة الطباعة اللي مكاتحبسش من اللمعان */
-        @keyframes continuousShimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-        .btn-shimmer-auto {
-            background: linear-gradient(90deg, #0a1118 0%, #1a293a 50%, #0a1118 100%);
-            background-size: 200% auto;
-            animation: continuousShimmer 3s infinite linear;
-        }
+    /* Aside Menu Styling */
+    aside {
+        backdrop-filter: blur(20px);
+        background: rgba(10, 17, 24, 0.98) !important;
+    }
 
-        @media print {
-            .no-print { display: none !important; }
-            body { background: white !important; }
-            .bg-luxury-palace { background: none !important; }
-            .animate-card { animation: none !important; transform: none !important; filter: none !important; }
-            .payment-card-luxe::before { display: none; }
-        }
-    </style>
+    /* Print Optimization */
+    @media print {
+        .no-print { display: none !important; }
+        .bg-luxury-palace { background: white !important; }
+        .animate-card { animation: none !important; box-shadow: none !important; border: 1px solid #eee !important; }
+        body { padding: 0; margin: 0; }
+    }
+</style>
 </head>
 <body class="bg-luxury-palace min-h-screen flex items-center justify-center p-6">
 
@@ -169,8 +173,8 @@
                         <span class="w-3 h-[1px] bg-[#b89146]"></span> Profil Client
                     </h2>
                     <div class="bg-gray-50/80 p-8 border-l-4 border-[#b89146] transition-all duration-500 hover:bg-[#0a1118] hover:text-white group-hover:translate-x-2">
-                        <p class="text-2xl font-playfair font-black uppercase tracking-tight">{{ $reservation->client->prenom}} {{ $reservation->client->nom}}</p>
-                        <p class="text-[11px] text-gray-500 mt-4 font-bold tracking-[2px] group-hover:text-gray-400 italic">📞 {{ $reservation->client->telephone}}</p>
+                        <p class="text-2xl font-playfair font-black uppercase tracking-tight">{{ $reservation->client->prenom}} {{ $reservation->client->email}}</p>
+                        <p class="text-[11px] text-gray-500 mt-4 font-bold tracking-[2px] group-hover:text-gray-400 italic">📞 {{ $reservation->client->name}}</p>
                     </div>
                 </section>
 
@@ -232,12 +236,17 @@
                 </div>
             </div>
         </div>
-
         <div class="delay-3 no-print mt-16 pt-10 border-t border-gray-100 flex justify-center relative z-10">
-            <button onclick="window.print()" class="btn-shimmer-auto group flex items-center gap-4 text-white px-20 py-6 text-[12px] font-black uppercase tracking-[6px] hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_30px_60px_rgba(0,0,0,0.4)] rounded-none border border-[#b89146]/20">
-                <svg class="w-6 h-6 group-hover:-translate-y-1 transition-transform text-[#b89146]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-                Imprimer le Reçu
-            </button>
+           <form action="{{route('facture.pdf',[$reservation->id])}}" method="POST" target="_blank">
+            @csrf
+    
+    <button type="submit" class="btn-shimmer-auto group flex items-center gap-4 text-white px-20 py-6 text-[12px] font-black uppercase tracking-[6px] hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_30px_60px_rgba(0,0,0,0.4)] rounded-none border border-[#b89146]/20">
+        <svg class="w-6 h-6 group-hover:-translate-y-1 transition-transform text-[#b89146]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+        </svg>
+        Imprimer le Reçu
+    </button>
+</form>
         </div>
     </div>
 </body>
