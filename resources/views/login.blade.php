@@ -21,6 +21,7 @@
     </style>
 </head>
 <body class="bg-luxury min-h-screen flex items-center justify-center font-inter p-6">
+ 
 
     <div class="w-full max-w-md bg-white/5 border border-white/10 p-10 backdrop-blur-xl shadow-[0_50px_100px_rgba(0,0,0,0.5)] relative overflow-hidden">
         
@@ -31,6 +32,11 @@
             <p class="text-[#b89146] text-[10px] font-bold tracking-[5px] uppercase mt-3 italic">Gestion Palace</p>
             <div class="w-12 h-[1px] bg-[#b89146]/3login.stor0 mx-auto mt-6"></div>
         </header>
+         @if(session('is bann'))
+    <div class="bg-red-500/10 border border-red-500 text-red-500 px-4 py-3 rounded mb-4 text-sm text-center">
+        {{ session('is bann') }}
+    </div>
+@endif
 
         <form action="{{ route('Login.store') }}" method="POST" class="space-y-8" autocomplete="off">
             @csrf

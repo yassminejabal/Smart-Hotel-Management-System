@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Exists;
 
 class LoginValidation extends FormRequest
 {
@@ -22,8 +23,9 @@ class LoginValidation extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email',],
             'password' => ['required'],
+
         ];
     }
 }

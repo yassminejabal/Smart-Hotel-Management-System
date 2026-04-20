@@ -20,8 +20,8 @@ class AuthController extends Controller
 
     public function storeinscreption(inscriptionValidation $request)
     {
-        // dd($request);
         $data = $request->validated();
+        $data['is_banne'] = false;
         User::create($data);
         return redirect()->route('Login.create');
     }
@@ -35,12 +35,18 @@ class AuthController extends Controller
     public function Loginstore(LoginValidation $request)
     {
         $data = $request->validated();
-        $check = Auth::attempt($data);
-        if ($check) {
-            return redirect()->route('dach');
+        if (Auth::attempt($data)) {
+            if (Auth::user()->is_banne == true) {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                $message = 'Votre compte est actuellement désactivé.';
+                return back()->with(['is bann' =>$message ]);
+            } else {
+                return redirect()->route('dach');
+            }
         } else {
             return throw new Exception("Error dans login");
-            
         }
     }
 
@@ -66,5 +72,23 @@ class AuthController extends Controller
         }
         $data = Chambre::all();
         return view('chambres.dachbordchambres', compact('data'));
+    }
+    public function toogleban($id)
+    {
+        // dd($id);
+        $user = User::findOrFail($id);
+        if ($user->is_banne == true) {
+
+            $user->is_banne = false;
+            $message = 'Utilisateur débanni avec succès.';
+        } else {
+
+            $user->is_banne = true;
+            $message = 'Utilisateur banni avec succès.';
+        }
+
+        $user->save();
+
+        return back()->with('success', $message);
     }
 }

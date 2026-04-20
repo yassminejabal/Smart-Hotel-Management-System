@@ -22,7 +22,7 @@ Route::get('/inscription/create', [AuthController::class, 'createinscription'])-
 Route::post('/inscription/store', [AuthController::class, 'storeinscreption'])->name('inscription.store');
 Route::get('/dachbord', [AuthController::class, 'main'])->name('dach');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
+Route::patch('/users/{id}/toogleban',[AuthController::class, 'toogleban'])->name('users.toogleban');
 
 
 
@@ -34,7 +34,7 @@ Route::post('/Chambre/store', [ChambreController::class, 'store'])->name('Chambr
 Route::get('/chambres', [ChambreController::class, 'index'])->name('chambres.index')->middleware(ReceptionnisteMiddleware::class);
 Route::get('/dashboard', [ChambreController::class, 'index'])->name('chambers.index')->middleware(ReceptionnisteMiddleware::class);
 Route::get('/chambers/{id}/edit', [ChambreController::class, 'edit'])->name('chambers.edit')->middleware(ReceptionnisteMiddleware::class);
-Route::put('/chambers/{id}', [ChambreController::class, 'update'])->name('chambers.update')->middleware(ReceptionnisteMiddleware::class);
+Route::put('/chambers/{id}', [ChambreController::class, 'update'])->name('chambers.update')->middleware(ReceptionnisteMiddleware::class);   
 Route::delete('/chambers/{id}', [ChambreController::class, 'destroy'])->name('chambers.destroy')->middleware(ReceptionnisteMiddleware::class);
 // Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create')->middleware(ReceptionnisteMiddleware::class);
 // Route::post('/clients/store', [ClientController::class, 'store'])->name('clients.store')->middleware(ReceptionnisteMiddleware::class);

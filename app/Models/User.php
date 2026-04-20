@@ -25,6 +25,7 @@ class User extends Authenticatable
         'telephone',
         'adresse',
         'date_naissance',
+        'is_banne',
     ];
 
 
