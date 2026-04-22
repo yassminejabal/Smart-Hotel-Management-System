@@ -19,7 +19,7 @@ class AdminMiddleware
             }
             
             if (Auth::user()->role !== 'Admin') {
-            dd($request);
+            // dd($request);
             abort(404);
         }
         return $next($request);

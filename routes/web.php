@@ -84,7 +84,7 @@ Route::delete('/reservations/{id}', [ReservationController::class, 'destroy'])->
 Route::patch('/reservations/{id}/status', [ReservationController::class, 'updateStatuspaiment'])->name('reservations.updateStatuspaiment')->middleware(ReceptionnisteMiddleware::class);
 Route::patch('/reservations/{id}/payment-status', [ReservationController::class, 'updatePaymentStatusReservationConfirmation'])->name('reservations.updatePaymentStatusReservationConfirmation')->middleware(ReceptionnisteMiddleware::class);
 Route::get('/reservations/{id}/paiement', [ReservationController::class, 'showPaiement'])->name('reservations.paiement');
-Route::post('/facture/{id}/pdf', [FactureController::class, 'telechargerFacture'])->name('facture.pdf')->middleware(ReceptionnisteMiddleware::class);
+Route::post('/facture/{id}/pdf', [FactureController::class, 'telechargerFacture'])->name('facture.pdf');
 
 
 

@@ -12,7 +12,7 @@ class ChambreController extends Controller
 
     public function index()
     {
-        $data = Chambre::all();
+        $data = Chambre::paginate(10);
 
         return view('chambres.dachbordchambres', compact('data'));
     }
