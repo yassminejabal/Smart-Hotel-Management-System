@@ -10,17 +10,10 @@ class updatePaymentStatusReservationConfirmationSERVICE
     /**
      * Create a new class instance.
      */
-    protected object $request;
-    protected int $id;
-    public function __construct($request, $id)
+    function PayementAndcofirmereservationService($request, $id)
     {
-        $this->request = $request;
-        $this->id = $id;
-    }
-    function PayementAndcofirmereservationService()
-    {
-        $reservation = Reservation::findOrFail($this->id);
-        $reservation->status = $this->request->status;
+        $reservation = Reservation::findOrFail($id);
+        $reservation->status = $request->status;
         $reservation->save();
     }
 }

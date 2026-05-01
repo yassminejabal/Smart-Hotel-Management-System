@@ -24,7 +24,7 @@ class ChambreController extends Controller
     }
     public function create()
     {
-        return redirect()->route('chambers.index');
+        return redirect()->route('chambres.index');
     }
     public function edit($id)
     {
@@ -41,7 +41,7 @@ class ChambreController extends Controller
     {
         $chambre = Chambre::findOrFail($id);
         $chambre->update($request->all());
-        return redirect()->route('chambers.index');
+        return redirect()->route('chambres.index');
     }
 
 
@@ -49,6 +49,6 @@ class ChambreController extends Controller
     {
         $chambre = Chambre::findOrFail($id);
         $chambre->delete();
-        return redirect()->route('chambers.index');
+        return redirect()->route('chambres.index');
     }
 }

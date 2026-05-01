@@ -55,7 +55,7 @@ class ClientController extends Controller
         try {
             Mail::to($client->email)->send(new ClientMail($client));
             
-            return redirect()->back()->with('message', 'Email envoiye avec sucsses !');
+            return redirect()->back()->with('message', 'Email envoiye avec sucsses');
         } catch (\Exception $th) {
             return redirect()->back()->with('error', 'Erreur dans lenvoi : ' . $th->getMessage());
         }

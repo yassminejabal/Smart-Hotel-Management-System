@@ -101,21 +101,21 @@
 </td>
                         </td>
                       <td class="p-8">
-    <form action="{{ route('reservations.updatePaymentStatusReservationConfirmation', $reservation->id) }}" method="POST">
-        @csrf
-        @method('PATCH')
-        <select name="status" onchange="this.form.submit()" 
-            class="appearance-none w-full py-2 px-4 text-[9px] font-bold uppercase tracking-widest rounded-full text-center cursor-pointer transition-all border-2
-            {{ $reservation->status == 'confirmee' ? 'bg-green-50 text-green-700 border-green-200' : '' }}
-            {{ $reservation->status == 'annulee' ? 'bg-red-50 text-red-700 border-red-200' : '' }}
-            {{ $reservation->status == 'en_attente' ? 'bg-orange-50 text-orange-700 border-orange-200' : '' }}">
-            
-            <option value="en_attente" {{ $reservation->status == 'en_attente' ? 'selected' : '' }}>🕒 En attente</option>
-            <option value="confirmee" {{ $reservation->status == 'confirmee' ? 'selected' : '' }}>✅ Confirmée</option>
-            <option value="annulee" {{ $reservation->status == 'annulee' ? 'selected' : '' }}>❌ Annulée</option>
-        </select>
-    </form>
-</td>
+                            <form action="{{ route('reservations.updatePaymentStatusReservationConfirmation', $reservation->id) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <select name="status" onchange="this.form.submit()" 
+                                    class="appearance-none w-full py-2 px-4 text-[9px] font-bold uppercase tracking-widest rounded-full text-center cursor-pointer transition-all border-2
+                                    {{ $reservation->status == 'confirmee' ? 'bg-green-50 text-green-700 border-green-200' : '' }}
+                                    {{ $reservation->status == 'annulee' ? 'bg-red-50 text-red-700 border-red-200' : '' }}
+                                    {{ $reservation->status == 'en_attente' ? 'bg-orange-50 text-orange-700 border-orange-200' : '' }}">
+                                    
+                                    <option value="en_attente" {{ $reservation->status == 'en_attente' ? 'selected' : '' }}>🕒 En attente</option>
+                                    <option value="confirmee" {{ $reservation->status == 'confirmee' ? 'selected' : '' }}>✅ Confirmée</option>
+                                    <option value="annulee" {{ $reservation->status == 'annulee' ? 'selected' : '' }}>❌ Annulée</option>
+                                </select>
+                            </form>
+                        </td>
 
                             <td class="p-8 text-right">
                                 <div class="flex justify-end gap-3">
@@ -132,6 +132,8 @@
                         
                         @endforeach
                     </tbody>
+                {{ $reservations->links() }}
+
                 </table>
             </div>
         </div>

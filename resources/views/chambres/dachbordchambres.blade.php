@@ -14,7 +14,7 @@
             
             <h2 class="text-[#b89146] text-[10px] font-bold tracking-[3px] uppercase mb-8 italic text-left">Nouvelle Unité</h2>
             
-            <form action="{{route('Chambre.store')}}" method="POST" class="space-y-8">
+            <form action="{{route('chambres.store')}}" method="POST" class="space-y-8">
                 @csrf
                 
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -74,8 +74,8 @@
                         @foreach($data as $chambre)
                         <tr class="hover:bg-gray-50/50 transition duration-300">
                             <td class="p-8 font-bold text-[#0a1118]">#{{ $chambre->number_Chambre }}</td>
+                            <span class="text-[10px] font-black tracking-widest uppercase">{{ $chambre->type }}</span>
                             <td class="p-8">
-                                <span class="text-[10px] font-black tracking-widest uppercase">{{ $chambre->type }}</span>
                             </td>
                             <td class="p-8 font-black text-sm">
                                 {{ $chambre->prix_base}} <span class="text-[10px] text-[#b89146]">DH</span>
@@ -87,11 +87,11 @@
                             </td>
                             <td class="p-8 text-right">
                                 <div class="flex justify-end gap-3">
-                                    <a href="{{route('chambers.edit',$chambre->id)}}" class="p-2 bg-gray-50 text-gray-400 hover:text-[#b89146] hover:bg-[#0a1118] transition-all rounded-full" title="Modifier">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2.5 2.5 0 113.536 3.536L12 14.207l-5 1 1-5 7.232-7.232z" stroke-width="2"/></svg>
+                                    <a href="{{route('chambres.edit',$chambre->id)}}" class="p-2 bg-gray-50 text-gray-400 hover:text-[#b89146] hover:bg-[#0a1118] transition-all rounded-full" title="Modifier">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11azxz2 2 0 002-2v-5m-1.414-9.414a2.5 2.5 0 113.536 3.536L12 14.207l-5 1 1-5 7.232-7.232z" stroke-width="2"/></svg>
                                     </a>
                                     
-                                    <form action="{{ route('chambers.destroy', $chambre->id) }}" method="POST" class="inline">
+                                    <form action="{{ route('chambres.destroy', $chambre->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="p-2 bg-gray-50 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-all rounded-full" title="Supprimer">

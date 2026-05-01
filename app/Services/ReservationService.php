@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Chambre;
 use App\Models\Facture;
 use App\Models\Paiement;
 use App\Models\Reservation;
@@ -15,6 +16,9 @@ class ReservationService
     public function createReservation(array $data)
     {
         return DB::transaction(function () use ($data) {
+            $chambre = Chambre::findOrFail($data['chambre_id']);
+            $chambre->statut = 'Occupee';
+            $chambre->save();
             $reservation = Reservation::create([
                 'client_id'      => $data['client_id'],
                 'chambre_id'     => $data['chambre_id'],
@@ -25,6 +29,7 @@ class ReservationService
                 'status'         => $data['status'],
                 'payment_status' => $data['payment_status'],
             ]);
+
             Paiement::create([
                 'reservation_id' => $reservation->id,
                 'montant'        => $data['total_price'],

@@ -40,13 +40,13 @@ class AuthController extends Controller
                 Auth::logout();
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
-                $message = 'Votre compte est actuellement désactivé.';
+                $message = 'Votre compte est actuellement desactive.';
                 return back()->with(['is bann' =>$message ]);
             } else {
                 return redirect()->route('dach');
             }
         } else {
-            return throw new Exception("Error dans login");
+            return back()->with('error','error dans login');
         }
     }
 
@@ -75,13 +75,12 @@ class AuthController extends Controller
     {
         $user = User::findOrFail($id);
         if ($user->is_banne == true) {
-
             $user->is_banne = false;
-            $message = 'Utilisateur débanni avec succès.';
+            $message = 'Utilisateur debanni avec succes.';
         }
         else {
             $user->is_banne = true;
-            $message = 'Utilisateur banni avec succès.';
+            $message = 'Utilisateur banni avec succes.';
         }
         $user->save();
 

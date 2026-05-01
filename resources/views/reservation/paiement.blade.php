@@ -89,17 +89,12 @@
                         <span class="text-2xl text-[#b89146] font-black">MAD</span>
                     </h3>
 
-                    @if($reservation->payment_status == 'paye')
+                    {{$reservation->payment_status }}
                         <div class="float-status bg-green-600 text-white px-10 py-5 text-[10px] font-black uppercase tracking-[5px] shadow-[0_20px_40px_rgba(22,163,74,0.4)] flex items-center gap-3">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                             Facture Réglée
                         </div>
-                    @else
-                        <div class="float-status bg-red-600 text-white px-10 py-5 text-[10px] font-black uppercase tracking-[5px] shadow-[0_20px_40px_rgba(220,38,38,0.4)] flex items-center gap-3">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            En Attente
-                        </div>
-                    @endif
+                   
                     
                     <div class="mt-8 text-[9px] text-gray-400 uppercase tracking-[3px] font-bold italic opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         Authentifié par Hotelo Systems

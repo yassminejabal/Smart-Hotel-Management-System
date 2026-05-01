@@ -38,18 +38,10 @@
 
     <nav class="fixed w-full z-50 p-6 flex flex-wrap justify-between items-center glass-nav animate-hero-text">
         <div class="text-2xl font-playfair tracking-[8px] font-black uppercase text-white">Hotelo</div>
-        
         <div class="hidden lg:flex gap-12 text-[10px] font-bold uppercase tracking-[4px]">
           
         </div>
-        
         <div class="flex items-center gap-6">
-                <div class="flex gap-6 items-center text-[10px] font-bold uppercase tracking-[3px]">
-                    <form method="POST" action="{{ route('logout') }}" class="inline">
-                        @csrf
-                        <button type="submit" class="bg-white/10 px-4 py-2 hover:bg-red-500/20 hover:text-red-500 transition-all duration-500">Déconnexion</button>
-                    </form>
-                </div>
 
                 <div class="flex gap-6 text-[10px] font-bold uppercase tracking-[3px]">
                     <a href="{{ route('Login.create') }}" class="hover:text-[#b89146] transition duration-500 py-2">Connexion</a>

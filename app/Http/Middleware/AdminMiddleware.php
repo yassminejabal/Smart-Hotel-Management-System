@@ -17,9 +17,8 @@ class AdminMiddleware
         if (!Auth::check()) {
             return redirect()->route('Login.create');
             }
-            
+
             if (Auth::user()->role !== 'Admin') {
-            // dd($request);
             abort(404);
         }
         return $next($request);

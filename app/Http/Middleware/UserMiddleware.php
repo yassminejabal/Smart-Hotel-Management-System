@@ -21,7 +21,5 @@ class UserMiddleware
             return redirect()->route('Login.create');
         }
         return $next($request);
-
-
     }
 }

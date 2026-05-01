@@ -17,10 +17,9 @@ class ClientMiddleware
         if (!Auth::check()) {
             return redirect()->route('Login.create');
         }
-
         if (Auth::user()->role == 'Client' || Auth::user()->role == 'Admin' || Auth::user()->role =='Receptionniste') {
             return $next($request);
-            }
+        }
             abort(404);
     }
 }

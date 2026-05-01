@@ -15,7 +15,7 @@
             </div>
         </header>
 
-        <form action="{{ route('chambers.update', $chambre->id) }}" method="POST" class="space-y-10">
+        <form action="{{ route('chambres.update', $chambre->id) }}" method="POST" class="space-y-10">
             @csrf
             @method('PUT')
 
@@ -64,7 +64,7 @@
 
                 <div class="flex flex-col md:flex-row items-center justify-between gap-6 pt-12 border-t border-white/5 mt-12">
                     
-                    <a href="{{ route('chambers.index') }}" 
+                    <a href="{{ route('chambres.index') }}" 
                         class="group flex items-center gap-2 text-[10px] font-bold text-gray-400 uppercase tracking-[3px] hover:text-white transition-all">
                         <span class="group-hover:-translate-x-1 transition-transform">←</span>
                         Retour à la liste
