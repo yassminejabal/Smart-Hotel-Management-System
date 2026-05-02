@@ -8,8 +8,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('reservations', function (Blueprint $table) {
-            $table->dropForeign(['client_id']); // supprimer FK
-            $table->dropColumn('client_id');    // supprimer colonne (optionnel)
+            $table->dropForeign(['client_id']);
+            $table->dropColumn('client_id');
         });
     }
 

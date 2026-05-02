@@ -10,6 +10,7 @@ use App\Http\Controllers\FactureController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ClientMiddleware;
 use App\Http\Middleware\ReceptionnisteMiddleware;
+use FontLib\Table\Type\name;
 
         Route::get('/', function () {
             return view("Lendinpages");
@@ -50,3 +51,6 @@ use App\Http\Middleware\ReceptionnisteMiddleware;
         Route::get('/contactReseptioneste', [ReservationController::class, 'contactReseptioneste'])->name('reservations.contactReseptioneste');
 
         Route::post('/contact_send',[ReservationController::class,"contactsendReseptioneste"])->name('contactReseptsioneste.send');
+
+
+        Route::post('/chechdisponibiliterchmber',[ReservationController::class,'getchamberdispo'])->name('reservations.getchamberdispo');

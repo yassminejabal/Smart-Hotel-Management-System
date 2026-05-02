@@ -9,25 +9,17 @@ use Illuminate\Support\Facades\DB;
 
 class UpdateReservationService
 {
-    protected array $data;
-    protected int $id;
-
-    public function __construct($data, $id)
+    function updateReservationservicee($data, $id)
     {
-        $this->data = $data;
-        $this->id = $id;
-    }
-    function updateReservationservicee()
-    {
-        return DB::transaction(function () {
-            $reservation = Reservation::findOrFail($this->id);
-            $reservation->update($this->data);
+        return DB::transaction(function () use ($data,$id) {
+            $reservation = Reservation::findOrFail($id);
+            $reservation->update($data);
             Paiement::where('reservation_id', $reservation->id)->update([
-                'montant'        => $this->data['total_price'] ?? $reservation->total_price,
-                'statut' => $this->data['payment_status'] ?? $reservation->payment_status,
+                'montant'        => $data['total_price'] ?? $reservation->total_price,
+                'statut' => $data['payment_status'] ?? $reservation->payment_status,
             ]);
             Facture::where('reservation_id', $reservation->id)->update([
-                'total' => $this->data['total_price'] ?? $reservation->total_price,
+                'total' => $data['total_price'] ?? $reservation->total_price,
             ]);
         });
     }

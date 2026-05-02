@@ -31,3 +31,4 @@ class Reservation extends Model
         return $this->belongsTo(Chambre::class, 'chambre_id');
     }
 }
+

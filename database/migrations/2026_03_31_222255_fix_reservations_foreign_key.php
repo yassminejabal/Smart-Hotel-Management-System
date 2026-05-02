@@ -12,13 +12,7 @@ return new class extends Migration
     public function up(): void
 {
     Schema::table('reservations', function (Blueprint $table) {
-       
-        try {
-            $table->dropForeign(['client_id']);
-        } catch (\Exception $e) {
-            
-        }
-
+        $table->dropForeign(['client_id']);
         $table->foreign('client_id')
               ->references('id')
               ->on('clients')

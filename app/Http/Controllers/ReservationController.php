@@ -35,10 +35,9 @@ class ReservationController extends Controller
         return view('reservation.create', compact('users', 'Chambres'));
     }
 
-    public function store(ReservationRequest $request)
+    public function store(ReservationRequest $request, ReservationService $ReservationService)
     {
         try {
-            $ReservationService = new ReservationService();
             $ReservationService->createReservation($request->validated());
             return redirect()->route('reservations.index');
         } catch (Exception $e) {
@@ -50,18 +49,16 @@ class ReservationController extends Controller
     public function edit($id)
     {
         $reservation = Reservation::findOrFail($id);
-        $users = User::where('role', 'Client')
-            ->where('is_banne', false)->orWhere('id', $reservation->client_id)->get();
-        $Chambres = Chambre::where('statut', 'Disponible')->orWhere('id', $reservation->chambre_id)->get();
+        $users = User::where('id', $reservation->client_id)->get();
+        $Chambres = Chambre::where('id', $reservation->chambre_id)->get();
         return view('reservation.edit', compact('reservation', 'users', 'Chambres'));
     }
 
 
-    public function update(ReservationUpdateRequest $request, $id)
+    public function update(ReservationUpdateRequest $request, $id, UpdateReservationService $UpdateReservationService)
     {
         try {
-            $UpdateReservationService = new UpdateReservationService($request->validated(), $id);
-            $UpdateReservationService->updateReservationservicee();
+            $UpdateReservationService->updateReservationservicee($request->validated(), $id);
             return redirect()->route("reservations.index");
         } catch (Exception $th) {
             return back()->with('error update', $th->getMessage());
@@ -69,22 +66,18 @@ class ReservationController extends Controller
     }
 
 
-    public function updatePaymentStatusReservationConfirmation(Request $request, $id)
+    public function updatePaymentStatusReservationConfirmation(Request $request, $id, updatePaymentStatusReservationConfirmationSERVICE $updatepayementconfirmeeservice)
     {
-
-        // dd($request,$id);
-        $updatepayementconfirmeeservice = new updatePaymentStatusReservationConfirmationSERVICE();
         $updatepayementconfirmeeservice->PayementAndcofirmereservationService($request, $id);
         return back();
     }
 
-    public function updateStatuspaiment(Request $request, $id)
+    public function updateStatuspaiment(Request $request, $id, UpdateStatuspaimentService $UpdateStatuspaimentService)
     {
 
 
         try {
-            $UpdateStatuspaimentService = new UpdateStatuspaimentService($request, $id);
-            $UpdateStatuspaimentService->updateStatuspaimentservice();
+            $UpdateStatuspaimentService->updateStatuspaimentservice($request, $id);
             return back();
         } catch (Exception $th) {
             return back('eroor Status paiment', $th->getMessage());
@@ -106,14 +99,26 @@ class ReservationController extends Controller
         $data = $request->validate([
             'check_in'  => 'required',
             'check_out' => 'required',
-            ]);
-            try {
-                Mail::to($emailReseptioneste)->send(new ReceptionnesteMail($data,$client));
-                // dd($client);
-            return redirect()->route('client.dashboard')->with('message_envoi_a_reseptioneste','Email envoyer au receptionniste');
+        ]);
+        try {
+            Mail::to($emailReseptioneste)->send(new ReceptionnesteMail($data, $client));
+            // dd($client);
+            return redirect()->route('client.dashboard')->with('message_envoi_a_reseptioneste', 'Email envoyer au receptionniste');
         } catch (\Throwable $th) {
 
             return redirect()->back()->with('error', $th->getMessage());
         }
+    }
+
+    function getchamberdispo(Request $request)
+    {
+         $checkIn = $request->check_in;
+    $checkOut = $request->check_out;
+
+        $ids = DB::table('reservations')->where('check_in', '<', $request->check_out)->where('check_out', '>', $request->check_in)->pluck('chambre_id');
+        $chambres = DB::table('chambres')->where('statut', 'Disponible')->whereNotIn('id', $ids)->get();
+        $users = User::where('role', 'Client')->where('is_banne', false)->get();
+        $Chambres = Chambre::where('statut', 'Disponible')->get();
+            return view('reservation.createstep2', compact('chambres','checkIn','checkOut','users', 'Chambres'));
     }
 }

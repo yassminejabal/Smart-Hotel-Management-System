@@ -15,7 +15,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('reservations', function (Blueprint $table) {
-            $table->decimal('paiement', 8, 2)->nullable(); // restore if needed
+            $table->decimal('paiement', 8, 2)->nullable();
         });
     }
 };

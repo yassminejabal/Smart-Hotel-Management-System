@@ -38,7 +38,7 @@ class ClientController extends Controller
     {
         // dd($request);
         $client = User::findOrFail($id);
-        $data = $request->validated();
+        $data = $request->all();
         $data['is_banne'] = false;
         $data['role'] = 'Client';
         $client->update($data);
